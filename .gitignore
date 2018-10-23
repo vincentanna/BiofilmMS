@@ -38,3 +38,6 @@ rsconnect/
 
 #telling Git to ingnore R's short term memory
 *.Rproj
+
+# excel
+*.xlsx
