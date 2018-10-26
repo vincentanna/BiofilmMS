@@ -112,7 +112,7 @@ Chl_Plot<-ggplot(Chlorophyll.df,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTR
         strip.background = element_blank(),
         strip.placement = "outside")+
   geom_boxplot(alpha=0.5)+
-  labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
+  labs(y=bquote('Chlorophyll ('~cm^-2~')'),x='Site')+
   facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
 
 Chl_Plot
