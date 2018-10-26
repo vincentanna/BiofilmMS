@@ -1,0 +1,99 @@
+---
+title: "Biofilm_CV,Chl,Resp"
+author: "Anna Vincent"
+date: "10/23/2018"
+output: html_document
+---
+
+##Loading Package Library
+Install and load packages needed for biofilm analyses - CV, Chl, Resp
+
+```{r Library, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+##Loading Packages
+# ipak function: install and load multiple R packages.
+# checks to see if packages are installed. Install them if they are not, then load them into the R session.
+ipak <- function(pkg){
+    new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+    if (length(new.pkg)) 
+        install.packages(new.pkg, dependencies = TRUE, repos='http://cran.us.r-project.org')
+    sapply(pkg, require, character.only = TRUE)
+}
+# Package list.  Contains all needed packages as a this writing.  To update, simply add new package name to the list!
+packages <- c("ggplot2", 
+              "plyr", 
+              "reshape2", 
+              "RColorBrewer", 
+              "scales", 
+              "grid",
+              "VennDiagram",
+              "bibtex",
+              "vegan",
+              "RAM",
+              "tidyr",
+              "Rmisc",
+              "glue",
+              "reshape",
+              "reshape2",
+              "lemon",
+              "gapminder",
+              "magrittr",
+              "dplyr",
+              "ggpubr",
+              "gridExtra",
+              "patternplot",
+              "tibble",
+              "gplots",
+              "broom",
+              "data.table",
+              "devtools")
+ipak(packages)
+
+```
+
+## Loading Optical Density Data
+Load CV raw data into R
+
+```{r CV data}
+CrystalViolet.df<-read.csv(file="CV_RawData.csv")
+
+```
+
+```{r CV Plot} 
+
+CV_Plot<-ggplot(CrystalViolet.df,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
+  geom_jitter(size=3)+
+  theme_classic()+
+  theme(legend.position=c(.2,.2),
+        legend.direction = "horizontal",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  geom_boxplot(alpha=0.5)+
+  labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
+
+CV_Plot
+
+ggsave("CV_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+
+```
+
+
+##Read in Chl-a raw data
+
+```{r Chl data}
+Chlorophyll.df<-read.csv(file="Chl_RawData.csv")
+```
+
+##Create new column for Chlorophyll measurement
+Chlorophyll measured using before and after acidification Abs readings
+
+```{r Chlorophyll Calculation}
+Chlorophyll.df$CHLOROPHYLL = 
+```
+
