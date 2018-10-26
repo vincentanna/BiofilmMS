@@ -1,2 +1,2 @@
 # BiofilmMS
-GRFP application documents
+Biofilm analyses
