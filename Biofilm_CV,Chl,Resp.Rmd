@@ -52,7 +52,7 @@ ipak(packages)
 
 ```
 
-## Loading Optical Density Data
+## Load CV raw data into R
 Load CV raw data into R
 
 ```{r CV data}
@@ -93,7 +93,31 @@ Chlorophyll.df<-read.csv(file="Chl_RawData.csv")
 ##Create new column for Chlorophyll measurement
 Chlorophyll measured using before and after acidification Abs readings
 
-```{r Chlorophyll Calculation}
-Chlorophyll.df$CHLOROPHYLL = 
+```{r Chlorophyll calculation}
+Chlorophyll.df$CHLOROPHYLL =abs(286 * (((abs(Chlorophyll.df$X650B)-abs(Chlorophyll.df$X750B))-(abs(Chlorophyll.df$X650A)-abs(Chlorophyll.df$X750A))*5)/Chlorophyll.df$SUBSTRATE_AREA))
 ```
+
+##Create plot of Chlorophyll data
+
+```{r Chl-a Plot}
+Chl_Plot<-ggplot(Chlorophyll.df,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
+  geom_jitter(size=3)+
+  theme_classic()+
+  theme(legend.position=c(.2,.2),
+        legend.direction = "horizontal",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  geom_boxplot(alpha=0.5)+
+  labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
+
+Chl_Plot
+
+ggsave("Chl_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+```
+
 
