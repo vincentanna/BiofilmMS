@@ -9,7 +9,7 @@ output: html_document
 Install and load packages needed for biofilm analyses - CV, Chl, Resp
 
 ```{r Library, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_chunk$set(echo = TRUE)
 
 ##Loading Packages
 # ipak function: install and load multiple R packages.
