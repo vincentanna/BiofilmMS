@@ -62,9 +62,8 @@ OpticalDensity.df<-read.csv(file="OD_RawData.csv")
 ```
 
 ```{r OD Plot} 
-
 OD_Plot<-ggplot(OpticalDensity.df,aes(x=SITE, y=OPTICAL_DENSITY, group=SITE, shape=SUBSTRATE, color=SUBSTRATE))+
-  geom_jitter(size=3)+
+  geom_jitter(size=2.5)+
   scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   theme_classic()+
   theme(legend.position=c(.8,.9),
@@ -81,7 +80,7 @@ OD_Plot<-ggplot(OpticalDensity.df,aes(x=SITE, y=OPTICAL_DENSITY, group=SITE, sha
 
 OD_Plot
 
-ggsave("OD_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+ggsave("OD_Plot.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
 
 ```
 
@@ -103,7 +102,7 @@ Chlorophyll.df$CHLOROPHYLL =abs(286 * (((abs(Chlorophyll.df$X650B)-abs(Chlorophy
 
 ```{r Chl-a Plot}
 Chl_Plot<-ggplot(Chlorophyll.df,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
-  geom_jitter(size=3)+
+  geom_jitter(size=2.5)+
   scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   theme_classic()+
   theme(legend.position=c(.2,.9),
@@ -121,7 +120,8 @@ Chl_Plot<-ggplot(Chlorophyll.df,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTR
 Chl_Plot
 
 
-ggsave("Chl_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+ggsave("Chl_Plot.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
+
 ```
 
 
