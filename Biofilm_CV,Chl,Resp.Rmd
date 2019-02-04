@@ -60,9 +60,9 @@ CrystalViolet.df<-read.csv(file="CV_RawData.csv")
 
 ```
 
-```{r CV Plot} 
+```{r OD Plot_OLD_Pre-dilution} 
 
-CV_Plot<-ggplot(CrystalViolet.df,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
+CV_Plot_Pre_Dilution<-ggplot(CrystalViolet.df,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
   geom_jitter(size=3)+
   theme_classic()+
   theme(legend.position=c(.2,.2),
@@ -77,9 +77,9 @@ CV_Plot<-ggplot(CrystalViolet.df,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=S
   labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
   facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
 
-CV_Plot
+CV_Plot_Pre_Dilution
 
-ggsave("CV_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+ggsave("CV_Plot_Pre_Dilution.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 
 ```
 
@@ -103,7 +103,7 @@ Chlorophyll.df$CHLOROPHYLL =abs(286 * (((abs(Chlorophyll.df$X650B)-abs(Chlorophy
 Chl_Plot<-ggplot(Chlorophyll.df,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
   geom_jitter(size=3)+
   theme_classic()+
-  theme(legend.position=c(.2,.2),
+  theme(legend.position=c(.2,.9),
         legend.direction = "horizontal",
         legend.title=element_blank(),
         axis.text=element_text(size=12),
@@ -119,5 +119,41 @@ Chl_Plot
 
 ggsave("Chl_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 ```
+
+#Read in Optical Density data for Post-dilution biomass analysis
+
+```{r OD data}
+OpticalDensity<-read.csv(file="OD_RawData.csv")
+
+```
+
+```{r OD data summary and stats}
+
+summary(OpticalDensity)
+tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, OpticalDensity$SUBSTRATE, mean)
+```
+
+
+```{r OD_Plot_Post-Dilution}
+
+OD_Plot_bar<-ggplot(OpticalDensity.df, aes(fill=SUBSTRATE, y=OPTICAL_DENSITY, x=SITE))+
+  geom_bar(position="dodge", stat="identity")
+  theme_classic()+
+  theme(legend.position=c(.8,.9),
+        legend.direction = "horizontal",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
+
+OD_Plot_bar
+
+ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+```
+
 
 
