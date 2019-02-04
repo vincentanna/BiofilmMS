@@ -67,7 +67,6 @@ tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, OpticalDensity$SUBST
 
 ```
 
-
 <<<<<<< HEAD
 ```{r OD Plot_boxplot} 
 OD_Plot<-ggplot(OpticalDensity.df,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
