@@ -47,25 +47,34 @@ packages <- c("ggplot2",
               "gplots",
               "broom",
               "data.table",
-              "devtools")
+              "devtools",
+              "wesanderson")
 ipak(packages)
 
 ```
 
 ## Load CV raw data into R
-Load CV raw data into R
+Load OD raw data into R for Post-Dilution analysis
 
-```{r CV data}
-CrystalViolet.df<-read.csv(file="CV_RawData.csv")
+```{r OD data from post-dilution}
+OpticalDensity.df<-read.csv(file="OD_RawData.csv")
 
 ```
 
-```{r OD Plot_OLD_Pre-dilution} 
+```{r OD summary stats and ANOVAS}
+summary(OpticalDensity)
+tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, OpticalDensity$SUBSTRATE, mean)
 
-CV_Plot_Pre_Dilution<-ggplot(CrystalViolet.df,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
-  geom_jitter(size=3)+
+```
+
+
+<<<<<<< HEAD
+```{r OD Plot_boxplot} 
+OD_Plot<-ggplot(OpticalDensity.df,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
+  geom_jitter(size=2.5)+
+  scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   theme_classic()+
-  theme(legend.position=c(.2,.2),
+  theme(legend.position=c(.7,.9),
         legend.direction = "horizontal",
         legend.title=element_blank(),
         axis.text=element_text(size=12),
@@ -73,16 +82,38 @@ CV_Plot_Pre_Dilution<-ggplot(CrystalViolet.df,aes(x=SITE,y=OPTICAL_DENSITY,group
         legend.text=element_text(size=12),
         strip.background = element_blank(),
         strip.placement = "outside")+
-  geom_boxplot(alpha=0.5)+
+  geom_boxplot(alpha=0.5, color = "black", fill = NA)+
   labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
   facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
 
-CV_Plot_Pre_Dilution
+OD_Plot
 
-ggsave("CV_Plot_Pre_Dilution.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+ggsave("OD_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 
 ```
 
+#Creating OD grouped bar graph, will use for publications (instead of boxplots), will need to enter stats eventually
+
+```{r OD Plot BAR}
+OD_Plot_bar<-ggplot(OpticalDensity.df, aes(fill=SUBSTRATE, y=OPTICAL_DENSITY, x=SITE))+
+  geom_bar(position="dodge", stat="identity")
+  theme_classic()+
+  theme(legend.position=c(.8,.9),
+        legend.direction = "horizontal",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
+
+OD_Plot_bar
+
+ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+
+```
 
 ##Read in Chl-a raw data
 
@@ -101,7 +132,8 @@ Chlorophyll.df$CHLOROPHYLL =abs(286 * (((abs(Chlorophyll.df$X650B)-abs(Chlorophy
 
 ```{r Chl-a Plot}
 Chl_Plot<-ggplot(Chlorophyll.df,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
-  geom_jitter(size=3)+
+  geom_jitter(size=2.5)+
+  scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   theme_classic()+
   theme(legend.position=c(.2,.9),
         legend.direction = "horizontal",
@@ -111,28 +143,15 @@ Chl_Plot<-ggplot(Chlorophyll.df,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTR
         legend.text=element_text(size=12),
         strip.background = element_blank(),
         strip.placement = "outside")+
-  geom_boxplot(alpha=0.5)+
+  geom_boxplot(alpha=0.5, color = "black", fill = NA)+
   labs(y=bquote('Chlorophyll ('~cm^-2~')'),x='Site')+
   facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
 
 Chl_Plot
 
-ggsave("Chl_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
-```
-
-#Read in Optical Density data for Post-dilution biomass analysis
-
-```{r OD data}
-OpticalDensity<-read.csv(file="OD_RawData.csv")
+ggsave("Chl_Plot.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
 
 ```
-
-```{r OD data summary and stats}
-
-summary(OpticalDensity)
-tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, OpticalDensity$SUBSTRATE, mean)
-```
-
 
 ```{r OD_Plot_Post-Dilution}
 
