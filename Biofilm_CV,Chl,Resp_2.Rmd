@@ -57,19 +57,19 @@ ipak(packages)
 Load OD raw data into R for Post-Dilution analysis
 
 ```{r OD data from post-dilution}
-OpticalDensity.df<-read.csv(file="OD_RawData.csv")
+OpticalDensity<-read.csv(file="OD_RawData.csv")
 
 ```
 
 ```{r OD summary stats and ANOVAS}
 summary(OpticalDensity)
-tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, OpticalDensity$SUBSTRATE, mean)
+tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, mean)
 
 ```
 
 <<<<<<< HEAD
 ```{r OD Plot_boxplot} 
-OD_Plot<-ggplot(OpticalDensity.df,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
+OD_Plot<-ggplot(OpticalDensity,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
   geom_jitter(size=2.5)+
   scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   theme_classic()+
@@ -117,20 +117,20 @@ ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "i
 ##Read in Chl-a raw data
 
 ```{r Chl data}
-Chlorophyll.df<-read.csv(file="Chl_RawData.csv")
+Chlorophyll<-read.csv(file="Chl_RawData.csv")
 ```
 
 ##Create new column for Chlorophyll measurement
 Chlorophyll measured using before and after acidification Abs readings
 
 ```{r Chlorophyll calculation}
-Chlorophyll.df$CHLOROPHYLL =abs(286 * (((abs(Chlorophyll.df$X650B)-abs(Chlorophyll.df$X750B))-(abs(Chlorophyll.df$X650A)-abs(Chlorophyll.df$X750A))*5)/Chlorophyll.df$SUBSTRATE_AREA))
+Chlorophyll$CHLOROPHYLL =abs(286 * (((abs(Chlorophyll$X650B)-abs(Chlorophyll$X750B))-(abs(Chlorophyll$X650A)-abs(Chlorophyll$X750A))*5)/Chlorophyll$SUBSTRATE_AREA))
 ```
 
 ##Create plot of Chlorophyll data
 
 ```{r Chl-a Plot}
-Chl_Plot<-ggplot(Chlorophyll.df,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
+Chl_Plot<-ggplot(Chlorophyll,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
   geom_jitter(size=2.5)+
   scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   theme_classic()+
@@ -154,7 +154,7 @@ ggsave("Chl_Plot.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
 
 ```{r OD_Plot_bar}
 
-OD_Plot_bar<-ggplot(OpticalDensity.df, aes(fill=SUBSTRATE, y=OPTICAL_DENSITY, x=SITE))+
+OD_Plot_bar<-ggplot(OpticalDensity, aes(fill=SUBSTRATE, y=OPTICAL_DENSITY, x=SITE))+
   geom_bar(position="dodge", stat="identity")
   theme_classic()+
   theme(legend.position=c(.8,.9),
