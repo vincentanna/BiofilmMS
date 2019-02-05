@@ -54,19 +54,26 @@ ipak(packages)
 ```
 
 ## Load CV raw data into R
-Load CV raw data into R
+Load OD raw data into R for Post-Dilution analysis
 
-```{r OD data}
+```{r OD data from post-dilution}
 OpticalDensity.df<-read.csv(file="OD_RawData.csv")
 
 ```
 
-```{r OD Plot} 
-OD_Plot<-ggplot(OpticalDensity.df,aes(x=SITE, y=OPTICAL_DENSITY, group=SITE, shape=SUBSTRATE, color=SUBSTRATE))+
+```{r OD summary stats and ANOVAS}
+summary(OpticalDensity)
+tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, OpticalDensity$SUBSTRATE, mean)
+
+```
+
+<<<<<<< HEAD
+```{r OD Plot_boxplot} 
+OD_Plot<-ggplot(OpticalDensity.df,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
   geom_jitter(size=2.5)+
   scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   theme_classic()+
-  theme(legend.position=c(.8,.9),
+  theme(legend.position=c(.7,.9),
         legend.direction = "horizontal",
         legend.title=element_blank(),
         axis.text=element_text(size=12),
@@ -80,10 +87,32 @@ OD_Plot<-ggplot(OpticalDensity.df,aes(x=SITE, y=OPTICAL_DENSITY, group=SITE, sha
 
 OD_Plot
 
-ggsave("OD_Plot.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
+ggsave("OD_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 
 ```
 
+#Creating OD grouped bar graph, will use for publications (instead of boxplots), will need to enter stats eventually
+
+```{r OD Plot BAR}
+OD_Plot_bar<-ggplot(OpticalDensity.df, aes(fill=SUBSTRATE, y=OPTICAL_DENSITY, x=SITE))+
+  geom_bar(position="dodge", stat="identity")
+  theme_classic()+
+  theme(legend.position=c(.8,.9),
+        legend.direction = "horizontal",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
+
+OD_Plot_bar
+
+ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+
+```
 
 ##Read in Chl-a raw data
 
@@ -119,9 +148,30 @@ Chl_Plot<-ggplot(Chlorophyll.df,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTR
 
 Chl_Plot
 
-
 ggsave("Chl_Plot.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
 
 ```
+
+```{r OD_Plot_Post-Dilution}
+
+OD_Plot_bar<-ggplot(OpticalDensity.df, aes(fill=SUBSTRATE, y=OPTICAL_DENSITY, x=SITE))+
+  geom_bar(position="dodge", stat="identity")
+  theme_classic()+
+  theme(legend.position=c(.8,.9),
+        legend.direction = "horizontal",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
+
+OD_Plot_bar
+
+ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+```
+
 
 
