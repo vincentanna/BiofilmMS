@@ -152,7 +152,7 @@ ggsave("Chl_Plot.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
 
 ```
 
-```{r OD_Plot_Post-Dilution}
+```{r OD_Plot_bar}
 
 OD_Plot_bar<-ggplot(OpticalDensity.df, aes(fill=SUBSTRATE, y=OPTICAL_DENSITY, x=SITE))+
   geom_bar(position="dodge", stat="identity")
