@@ -92,23 +92,15 @@ ggsave("OD_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 ```
 
 #Creating OD grouped bar graph, will use for publications (instead of boxplots), will need to enter stats eventually
+#position dodge for grouped bar
 
 ```{r OD Plot BAR}
-OD_Plot_bar<-ggplot(OpticalDensity.df, aes(fill=SUBSTRATE, y=OPTICAL_DENSITY, x=SITE))+
-  geom_bar(position="dodge", stat="identity")
-  theme_classic()+
-  theme(legend.position=c(.8,.9),
-        legend.direction = "horizontal",
-        legend.title=element_blank(),
-        axis.text=element_text(size=12),
-        axis.title=element_text(size=12),
-        legend.text=element_text(size=12),
-        strip.background = element_blank(),
-        strip.placement = "outside")+
-  labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
-  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
+OD_Plot_bar <- ggplot(OpticalDensity, aes(x=SITE, y=OPTICAL_DENSITY, fill=SUBSTRATE))+
+  geom_bar(stat="identity", position=position_dodge())+
+  #scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
+  xlab('Site') + ylab('Optical Density ('~cm^-2~')')
 
-OD_Plot_bar
+OD_Plot_bar 
 
 ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 
@@ -117,7 +109,7 @@ ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "i
 ##Read in Chl-a raw data
 
 ```{r Chl data}
-Chlorophyll<-read.csv(file="Chl_RawData.csv")
+Chlorophyll.df<-read.csv(file="Chl_RawData.csv")
 ```
 
 ##Create new column for Chlorophyll measurement
@@ -173,5 +165,8 @@ OD_Plot_bar
 ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 ```
 
+```{r }
+
+```
 
 
