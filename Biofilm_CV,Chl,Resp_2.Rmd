@@ -67,6 +67,13 @@ tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, mean)
 
 ```
 
+#Reading in OD data --> data file includes MEAN OD and Standard Error (SE) for each substrate type at each site 
+
+```{r OD data with SE}
+OpticalDensitySE <- read.csv(file = "OD_Data_SE.csv")
+```
+
+
 <<<<<<< HEAD
 ```{r OD Plot_boxplot} 
 OD_Plot<-ggplot(OpticalDensity,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
@@ -95,12 +102,28 @@ ggsave("OD_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 #position dodge for grouped bar
 
 ```{r OD Plot BAR}
-OD_Plot_bar <- ggplot(OpticalDensity, aes(x=SITE, y=OPTICAL_DENSITY, fill=SUBSTRATE))+
-  geom_bar(stat="identity", position=position_dodge())+
-  #scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
-  xlab('Site') + ylab('Optical Density ('~cm^-2~')')
+OD_Plot_bar <- ggplot(OpticalDensitySE, aes(x=SITE, y=MEAN_OD, fill=SUBSTRATE))+
+  geom_bar(stat="identity", color="black", position=position_dodge())+
+  theme_bw()+
+  #theme_classic2()+ --> x- and y-axis black
+  scale_fill_manual(values=c("#3B9AB2", "#EBCC2A", "#F21A00"))+
+  theme(legend.position=c(.8,.9),
+        legend.direction = "horizontal",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        plot.background = element_rect(fill = "white"),
+        panel.background = element_rect(fill = "white"),
+        panel.grid.major = element_line(colour = "white", size=0.1),
+        panel.grid.minor = element_line(colour = "white")
+        )+
+  xlab('Site') + ylab('Optical Density ('~cm^-2~')')+
+#Adding SE bars
+  geom_errorbar(aes(ymin=MEAN_OD-OD_SE, ymax=MEAN_OD+OD_SE), width = 0.2, position
+  =position_dodge(0.9))
 
-OD_Plot_bar 
+OD_Plot_bar
 
 ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 
