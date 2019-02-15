@@ -62,8 +62,8 @@ OpticalDensity<-read.csv(file="OD_RawData.csv")
 ```
 
 ```{r OD summary stats and ANOVAS}
-summary(OpticalDensity)
-tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, mean)
+#summary(OpticalDensity)
+#tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, mean)
 
 ```
 
@@ -107,8 +107,8 @@ position dodge for grouped bar
 ```{r OD Plot BAR}
 OD_Plot_bar <- ggplot(OpticalDensitySE, aes(x=SITE, y=MEAN_OD, fill=SUBSTRATE))+
   geom_bar(stat="identity", color="black", position=position_dodge())+
-  theme_bw()+
-  #theme_classic2()+ --> x- and y-axis black
+  #theme_bw()+
+  theme_classic()+
   scale_fill_manual(values=c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   theme(legend.position=c(.9,.85),
         legend.direction = "vertical",
@@ -183,16 +183,17 @@ ggsave("Chl_Plot.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
 
 ```
 
+
 #Chl Bar Plot
 
 ```{r CHL Plot BAR}
 CHL_Plot_bar <- ggplot(ChlorophyllSE, aes(x=SITE, y=MEAN_CHL, fill=SUBSTRATE))+
   geom_bar(stat="identity", color="black", position=position_dodge())+
-  theme_bw()+
-  #theme_classic2()+ --> x- and y-axis black
+  #theme_bw()+
+  theme_classic()+
   scale_fill_manual(values=c("#3B9AB2", "#EBCC2A", "#F21A00"))+
-  theme(legend.position=c(.2,.9),
-        legend.direction = "horizontal",
+  theme(legend.position=c(.15,.9),
+        legend.direction = "vertical",
         legend.title=element_blank(),
         axis.text=element_text(size=12),
         axis.title=element_text(size=12),
@@ -229,12 +230,12 @@ RespirationSE <- read.csv(file="Resp_SE.csv")
 ```{r Respiration Bar Plot}
 RESP_Plot_bar <- ggplot(RespirationSE, aes(x=SITE, y=RESPIRATION, fill=SUBSTRATE))+
   geom_bar(stat="identity", color="black", position=position_dodge())+
-  theme_bw()+
-  #theme_classic2()+ --> x- and y-axis black
+  #theme_bw()+
+  theme_classic()+
   scale_fill_manual(values=c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   scale_x_discrete(position = "top")+
-  theme(legend.position=c(.8,.2),
-        legend.direction = "horizontal",
+  theme(legend.position=c(.9,.1),
+        legend.direction = "vertical",
         legend.title=element_blank(),
         axis.text=element_text(size=12),
         axis.title=element_text(size=12),
@@ -264,11 +265,11 @@ ggsave("RESP_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = 
 ```{r Normalized Respiration Plot BAR}
 NORM_Plot_bar <- ggplot(RespirationSE, aes(x=SITE, y=NORM_RESPIRATION, fill=SUBSTRATE))+
   geom_bar(stat="identity", color="black", position=position_dodge())+
-  theme_bw()+
+  theme_classic()+
   scale_fill_manual(values=c("#3B9AB2", "#EBCC2A", "#F21A00"))+
   scale_x_discrete(position = "top")+
-  theme(legend.position=c(.8,.2),
-        legend.direction = "horizontal",
+  theme(legend.position=c(.9,.1),
+        legend.direction = "vertical",
         legend.title=element_blank(),
         axis.text=element_text(size=12),
         axis.title=element_text(size=12),
@@ -279,8 +280,9 @@ NORM_Plot_bar <- ggplot(RespirationSE, aes(x=SITE, y=NORM_RESPIRATION, fill=SUBS
         panel.grid.minor = element_line(colour = "white"),
         strip.background = element_blank(),
         strip.placement = "outside")+
-  theme(axis.text.x = element_text(colour = "black"))+
-  theme(axis.text.y = element_text(colour = "black"))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(colour = "black"),
+        axis.text.y = element_text(colour = "black"))+
   ylab('Normalized Respiration ('~cm^-2~')')+
   facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")+
 #Adding SE bars
