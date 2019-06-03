@@ -1,0 +1,63 @@
+---
+title: "Biofilm_CommunityAnalyses"
+author: "Anna Vincent"
+date: "6/3/2019"
+output: html_document
+---
+
+## iPak Function --> install and load multiple R packages needed for analysis
+
+```{r Library, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+
+ipak <- function(pkg){
+    new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+    if (length(new.pkg)) 
+        install.packages(new.pkg, dependencies = TRUE, repos='http://cran.us.r-project.org')
+    sapply(pkg, require, character.only = TRUE)
+}
+
+# Package list.  Contains all needed packages as a this writing.  To update, simply add new package name to the list!
+
+packages <- c("ggplot2", 
+              "plyr", 
+              "reshape2", 
+              "RColorBrewer", 
+              "scales", 
+              "grid",
+              "VennDiagram",
+              "bibtex",
+              "vegan",
+              "RAM",
+              "tidyr",
+              "Rmisc",
+              "glue",
+              "reshape",
+              "reshape2",
+              "lemon",
+              "gapminder",
+              "magrittr",
+              "dplyr",
+              "ggpubr",
+              "gridExtra",
+              "patternplot",
+              "tibble",
+              "gplots",
+              "broom",
+              "data.table",
+              "devtools",
+              "wesanderson")
+ipak(packages)
+
+```
+
+## Load data into Rmarkdown
+
+```{r Load data, include=FALSE,echo=FALSE,warning=FALSE}
+
+Algae.df<-read.delim("Vincent23S.final.subsample.tax.summary")
+Algae.df<-algae.df[,1:71]
+
+```
+
+
