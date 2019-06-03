@@ -5,7 +5,7 @@ date: "10/23/2018"
 output: html_document
 ---
 
-##Loading Package Library
+#Package Library
 Install and load packages needed for biofilm analyses - CV, Chl, Resp
 
 ```{r Library, include=FALSE}
@@ -53,7 +53,7 @@ ipak(packages)
 
 ```
 
-## Load CV raw data into R
+#OD Raw Data
 Load OD raw data into R for Post-Dilution analysis
 
 ```{r OD data from post-dilution}
@@ -62,13 +62,21 @@ OpticalDensity<-read.csv(file="OD_RawData.csv")
 ```
 
 ```{r OD summary stats and ANOVAS}
-summary(OpticalDensity)
-tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, mean)
+#summary(OpticalDensity)
+#tapply(OpticalDensity$OPTICAL_DENSITY, OpticalDensity$SITE, mean)
 
 ```
 
-<<<<<<< HEAD
-```{r OD Plot_boxplot} 
+#OD Data with SE
+Data file includes MEAN OD and Standard Error (SE) for each substrate type at each site 
+
+```{r OD data with SE}
+OpticalDensitySE <- read.csv(file = "OD_Data_SE.csv")
+```
+
+#OD Box Plot
+
+```{r OD Plot BOX} 
 OD_Plot<-ggplot(OpticalDensity,aes(x=SITE,y=OPTICAL_DENSITY,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
   geom_jitter(size=2.5)+
   scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
@@ -91,35 +99,66 @@ ggsave("OD_Plot.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 
 ```
 
-#Creating OD grouped bar graph, will use for publications (instead of boxplots), will need to enter stats eventually
-#position dodge for grouped bar
+#OD Bar Plot
+Creating OD grouped bar graph, will use for publications (instead of boxplots), will need to enter stats eventually
+
+position dodge for grouped bar
 
 ```{r OD Plot BAR}
-OD_Plot_bar <- ggplot(OpticalDensity, aes(x=SITE, y=OPTICAL_DENSITY, fill=SUBSTRATE))+
-  geom_bar(stat="identity", position=position_dodge())+
-  #scale_color_manual(values = c("#3B9AB2", "#EBCC2A", "#F21A00"))+
-  xlab('Site') + ylab('Optical Density ('~cm^-2~')')
+OD_Plot_bar <- ggplot(OpticalDensitySE, aes(x=SITE, y=MEAN_OD, fill=SUBSTRATE))+
+  geom_bar(stat="identity", color="black", position=position_dodge())+
+  #theme_bw()+
+  theme_classic()+
+  scale_fill_manual(values=c("#3B9AB2", "#EBCC2A", "#F21A00"))+
+  theme(legend.position=c(.9,.85),
+        legend.direction = "vertical",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        plot.background = element_rect(fill = "white"),
+        panel.background = element_rect(fill = "white"),
+        panel.grid.major = element_line(colour = "white", size=0.1),
+        panel.grid.minor = element_line(colour = "white"),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(colour = "black"),
+        axis.text.y = element_text(colour = "black"))+
+  ylab('Optical Density ('~cm^-2~')')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")+
+#Adding SE bars
+  geom_errorbar(aes(ymin=MEAN_OD-OD_SE, ymax=MEAN_OD+OD_SE), width = 0.2, position
+  =position_dodge(0.9))
 
-OD_Plot_bar 
+OD_Plot_bar
 
 ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 
 ```
 
-##Read in Chl-a raw data
+#Chl-a Raw data
 
 ```{r Chl data}
-Chlorophyll.df<-read.csv(file="Chl_RawData.csv")
+Chlorophyll<-read.csv(file="Chl_RawData.csv")
 ```
 
-##Create new column for Chlorophyll measurement
+#Chlorophyll Calcuation Equation
 Chlorophyll measured using before and after acidification Abs readings
 
 ```{r Chlorophyll calculation}
 Chlorophyll$CHLOROPHYLL =abs(286 * (((abs(Chlorophyll$X650B)-abs(Chlorophyll$X750B))-(abs(Chlorophyll$X650A)-abs(Chlorophyll$X750A))*5)/Chlorophyll$SUBSTRATE_AREA))
 ```
 
-##Create plot of Chlorophyll data
+#Chl Data with SE
+
+```{r CHL Data with SE}
+ChlorophyllSE <- read.csv(file="Chl_Data_SE.csv")
+
+```
+
+
+#Chl Box Plot
 
 ```{r Chl-a Plot}
 Chl_Plot<-ggplot(Chlorophyll,aes(x=SITE,y=CHLOROPHYLL,group=SITE,shape=SUBSTRATE,color=SUBSTRATE))+
@@ -144,29 +183,114 @@ ggsave("Chl_Plot.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
 
 ```
 
-```{r OD_Plot_bar}
 
-OD_Plot_bar<-ggplot(OpticalDensity, aes(fill=SUBSTRATE, y=OPTICAL_DENSITY, x=SITE))+
-  geom_bar(position="dodge", stat="identity")
+#Chl Bar Plot
+
+```{r CHL Plot BAR}
+CHL_Plot_bar <- ggplot(ChlorophyllSE, aes(x=SITE, y=MEAN_CHL, fill=SUBSTRATE))+
+  geom_bar(stat="identity", color="black", position=position_dodge())+
+  #theme_bw()+
   theme_classic()+
-  theme(legend.position=c(.8,.9),
-        legend.direction = "horizontal",
+  scale_fill_manual(values=c("#3B9AB2", "#EBCC2A", "#F21A00"))+
+  theme(legend.position=c(.15,.9),
+        legend.direction = "vertical",
         legend.title=element_blank(),
         axis.text=element_text(size=12),
         axis.title=element_text(size=12),
         legend.text=element_text(size=12),
+        plot.background = element_rect(fill = "white"),
+        panel.background = element_rect(fill = "white"),
+        panel.grid.major = element_line(colour = "white", size=0.1),
+        panel.grid.minor = element_line(colour = "white"),
         strip.background = element_blank(),
         strip.placement = "outside")+
-  labs(y=bquote('Optical Density ('~cm^-2~')'),x='Site')+
-  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(colour = "black"),
+        axis.text.y = element_text(colour = "black"))+
+  ylab('Chlorophyll ('~cm^-2~')')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")+
+#Adding SE bars
+  geom_errorbar(aes(ymin=MEAN_CHL-CHL_SE, ymax=MEAN_CHL+CHL_SE), width = 0.2, position=position_dodge(0.9))
 
-OD_Plot_bar
+CHL_Plot_bar
 
-ggsave("OD_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+ggsave("CHL_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
 ```
 
-```{r }
+#Respiration Data
+Upload Respiration data (including Norm Resp) as mg O2
+
+```{r Respiration data (including normalized)}
+RespirationSE <- read.csv(file="Resp_SE.csv")
 
 ```
 
+#Respiration Bar Plot
+
+```{r Respiration Bar Plot}
+RESP_Plot_bar <- ggplot(RespirationSE, aes(x=SITE, y=RESPIRATION, fill=SUBSTRATE))+
+  geom_bar(stat="identity", color="black", position=position_dodge())+
+  #theme_bw()+
+  theme_classic()+
+  scale_fill_manual(values=c("#3B9AB2", "#EBCC2A", "#F21A00"))+
+  scale_x_discrete(position = "top")+
+  theme(legend.position=c(.9,.1),
+        legend.direction = "vertical",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        plot.background = element_rect(fill = "white"),
+        panel.background = element_rect(fill = "white"),
+        panel.grid.major = element_line(colour = "white", size=0.1),
+        panel.grid.minor = element_line(colour = "white"),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(colour = "black"),
+        axis.text.y = element_text(colour = "black"))+
+  ylab('Respiration ('~cm^-2~')')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")+
+#Adding SE bars
+  geom_errorbar(aes(ymin=RESPIRATION-RESP_SE, ymax=RESPIRATION+RESP_SE), width = 0.2, position=position_dodge(0.9))
+
+RESP_Plot_bar
+
+ggsave("RESP_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+
+```
+
+#Normalized Respiration Bar Plot
+
+```{r Normalized Respiration Plot BAR}
+NORM_Plot_bar <- ggplot(RespirationSE, aes(x=SITE, y=NORM_RESPIRATION, fill=SUBSTRATE))+
+  geom_bar(stat="identity", color="black", position=position_dodge())+
+  theme_classic()+
+  scale_fill_manual(values=c("#3B9AB2", "#EBCC2A", "#F21A00"))+
+  scale_x_discrete(position = "top")+
+  theme(legend.position=c(.9,.1),
+        legend.direction = "vertical",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        plot.background = element_rect(fill = "white"),
+        panel.background = element_rect(fill = "white"),
+        panel.grid.major = element_line(colour = "white", size=0.1),
+        panel.grid.minor = element_line(colour = "white"),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(colour = "black"),
+        axis.text.y = element_text(colour = "black"))+
+  ylab('Normalized Respiration ('~cm^-2~')')+
+  facet_grid(~LOCATION, switch= "x", scales = "free_x", space = "free_x")+
+#Adding SE bars
+  geom_errorbar(aes(ymin=NORM_RESPIRATION-NORM_SE, ymax=NORM_RESPIRATION+NORM_SE), width = 0.2, position=position_dodge(0.9))
+
+NORM_Plot_bar
+
+ggsave("NORM_Plot_bar.jpeg", device = "jpeg", width = 12, height = 8.5, units = "in")
+
+```
 
