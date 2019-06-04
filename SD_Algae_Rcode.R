@@ -69,3 +69,51 @@ SD_shannon.div.alg=ggplot(SD_shannon.div.summary, aes(x=Date,y=mean,group=Substr
   ggtitle("Algal Communities")+
   scale_y_continuous(breaks=seq(0,5,0.5))
 SD_shannon.div.alg
+
+#OTU Richness
+SD_algae.df$taxlevel=as.factor(SD_algae.df$taxlevel)
+SD_algae.df.6=subset.data.frame(SD_algae.df, taxlevel==6,drop=TRUE)
+observationThreshold = 1 #set min number to count as OTU being present
+SD_otu=apply(SD_algae.df.6[,6:67]>=observationThreshold, 2, sum,na.rm=T) #check by row to see if each taxa present or not
+SD_otu.0=apply(SD_algae.df.6[,6:67],2,sum,na.rm=T)
+list_to_df <- function(list_for_df) {
+  list_for_df <- as.list(list_for_df)
+  nm <- names(list_for_df)
+  if (is.null(nm))
+    nm <- seq_along(list_for_df)
+  df <- data.frame(name = nm, stringsAsFactors = FALSE)
+  df$value <- unname(list_for_df)
+  df
+}
+SD_otu.df=list_to_df(otu) #conevrt list to data frame wiht custom function above
+SD_otu.df$value=as.numeric(SD_otu.df$value)
+SD_otu.df=separate(SD_otu.df,name,into=c("junk","Date","Substrate"),sep=c(1,7))
+SD_otu.df=separate(SD_otu.df,Substrate,into=c("Substrate","Rep"),sep=c(-1))
+SD_otu.df$junk=NULL
+SD_otu.df=droplevels(SD_otu.df[-which(SD_otu.df$Substrate=='CR'),])
+SD_otu.df$Date=as.factor(SD_otu.df$Date)
+SD_otu.df$Date=revalue(SD_otu.df$Date,c("170818"="3","170828"="10","170905"="21","170915"="31"))
+SD_out.aov=SD_otu.df%>% #tidy pipes!  Run anovs by Date on otu richenss
+  group_by(Date)%>%
+  do(tidy(aov(value~Substrate,data=.)))
+SD_out.aov
+SD_tukey.out=SD_otu.df%>%
+  group_by(Date)%>%
+  do(multitst=TukeyHSD(aov(value~Substrate,data=.)))
+SD_tukey.out %>%tidy(multitst)
+SD_otu.df.summary=summarySE(SD_otu.df,measurevar="value",groupvars=c("Date","Substrate"),na.rm=TRUE)
+pd=position_dodge(width=0.4)
+SD_otu.plot=ggplot(SD_otu.df.summary, aes(x=Date,y=value,group=Substrate,shape=Substrate,fill=Substrate))+
+  geom_point(position=pd,size=4)+geom_line(aes(linetype=Substrate),position=pd)+
+  geom_errorbar(aes(ymin=value-se,ymax=value+se),width=0.3,position=pd)+
+  ylab("Observed OTUs")+
+  theme_classic()+
+  theme(legend.position=c(0.25,0.95),
+        legend.title=element_blank(),
+        legend.direction="horizontal",
+        axis.text=element_text(size=16),
+        axis.title=element_text(size=16),
+        legend.text=element_text(size=14))+
+  scale_shape_manual(name="Substrate",values=c(21,22,23,24,25,26))
+SD_otu.plot
+

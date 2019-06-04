@@ -64,15 +64,15 @@ pd=position_dodge(width = 0.4)
 
 ```
 
-##Remove Chloroplasts --> forgot to do this in Mothur
+## Remove Chloroplasts --> forgot to do this in Mothur
 
-```{r Remove Chloroplasts}
+```{r Remove Chloroplasts, echo=FALSE, warning=FALSE}
 
 Algae.df=Algae.df[Algae.df$taxon !="Chloroplast_ge",]
 
 ```
 
-##Shannon Diversity
+## Shannon Diversity
 
 ```{r Calculate Shannon Diversity, echo=FALSE, warning=FALSE}
 
@@ -95,26 +95,36 @@ Algae.Shannon.df$Site=factor(Algae.Shannon.df$Site,levels=c("AZ","MD","WA","HC",
 Algae.Shannon.df$Substrate=factor(Algae.Shannon.df$Substrate,levels=c("P","F","T"),labels=c("PVC","Foam","Tile"))
 
 #Summarize Shannon Diversity by Site and Substrate
-# Get means across reps
 
-Algae.Shannon.Diversity.Summary<-Algae.Shannon.df %>% 
+#Shannon summary among sites and substrates --> get means across reps
+
+Alg.Shan.Div.Summary<-Algae.Shannon.df %>% 
   group_by(Site, Substrate) %>% 
+  summarise(mean=mean(Diversity),se=(sd(Diversity)/sqrt(n())))
+
+#Shannon summary for 3 substrates
+
+Alg.Shan.Div.Summary.SUB<-Algae.Shannon.df %>% 
+  group_by(Substrate) %>% 
   summarise(mean=mean(Diversity),se=(sd(Diversity)/sqrt(n())))
 
 ```
 
-```{r Figure: Shannon Diversity}
+```{r Figure: Shannon Diversity, echo=FALSE, warning=FALSE}
+
+#Shannon plot in COLOR
 
 Algae.Shannon.Diversity=ggplot(Algae.Shannon.Diversity.Summary, aes(x=Site,y=mean,fill=Substrate))+
   geom_bar(stat="identity", color="black", position=position_dodge())+
   ylab("Shannon Diversity (H')")+
   xlab("Site")+
   theme_classic()+
-  theme(legend.position=c(.9,.85),
-        legend.direction = "vertical",
+  theme(legend.position=c(.45,.9),
+        legend.direction = "horizontal",
         legend.title=element_blank(),
         axis.text=element_text(size=12),
         axis.title=element_text(size=12),
+        axis.text.x = element_text(angle = 45, hjust=1),
         legend.text=element_text(size=12),
         plot.background = element_rect(fill = "white"),
         panel.background = element_rect(fill = "white"),
@@ -131,6 +141,88 @@ Algae.Shannon.Diversity=ggplot(Algae.Shannon.Diversity.Summary, aes(x=Site,y=mea
 Algae.Shannon.Diversity
 
 ggsave("Algae.Shannon.Diversity.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
+
+```
+
+```{r Figure: Shannon Diversity BW, echo=FALSE, warning=FALSE}
+
+#Shannon plot in BW
+
+Algae.Shannon.Diversity.BW=ggplot(Algae.Shannon.Diversity.Summary, aes(x=Site,y=mean,fill=Substrate))+
+  geom_bar(stat="identity", color="black", position=position_dodge())+
+  ylab("Shannon Diversity (H')")+
+  xlab("Site")+
+  theme_classic()+
+  scale_fill_manual(values=c("#000000", "#C0C0C0", "#FFFFFF"))+
+  theme(legend.position=c(.45,.9),
+        legend.direction = "horizontal",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        axis.text.x = element_text(angle = 45, hjust=1),
+        legend.text=element_text(size=12),
+        plot.background = element_rect(fill = "white"),
+        panel.background = element_rect(fill = "white"),
+        panel.grid.major = element_line(colour = "white", size=0.1),
+        panel.grid.minor = element_line(colour = "white"),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(colour = "black"),
+        axis.text.y = element_text(colour = "black"))+
+  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width = 0.2, position
+  =position_dodge(0.9))
+
+Algae.Shannon.Diversity.BW
+
+ggsave("Algae.Shannon.Diversity.BW.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
+
+```
+
+```{r 1/2-way ANOVAs Shannon Diversity, echo=FALSE, warning=FALSE}
+
+Algae.Shannon.aov<-aov(Diversity~Site*Substrate, data=Algae.Shannon.df)
+summary(Algae.Shannon.aov)
+
+```
+
+## OTU Richness
+
+```{r OTU Richness, echo=FALSE, warning=FALSE}
+
+#Count # of unqiue taxa we have per sample (or OTUs, operational taxonomic units)
+#Use custom function, look for values >0 in each row of dataset
+
+Algae.df$taxlevel=as.factor(Algae.df$taxlevel)
+Algae.df.6=subset.data.frame(Algae.df, taxlevel==6,drop=TRUE)
+observationThreshold = 1 #set min number to count as OTU being present
+OTU=apply(Algae.df.6[,6:62]>=observationThreshold, 2, sum,na.rm=T) #check by row to see if each taxa present or not
+OTU.0=apply(Algae.df.6[,6:62],2,sum,na.rm=T)
+list_to_df <- function(list_for_df) {
+  list_for_df <- as.list(list_for_df)
+  nm <- names(list_for_df)
+  if (is.null(nm))
+    nm <- seq_along(list_for_df)
+  df <- data.frame(name = nm, stringsAsFactors = FALSE)
+  df$value <- unname(list_for_df)
+  df
+}
+
+#Convert list to data frame with custom function above
+
+OTU.df=list_to_df(OTU)
+OTU.df$value=as.numeric(OTU.df$value)
+OTU.df <- OTU.df[-c(19,29,39),] #Remove rows that are controls --> Anna2020SCB23S, Anna2031SCD23S, Anna2041SCE23S
+OTU.df=separate(OTU.df,name,into=c("Run_Info","Site","Substrate","Rep","Gene"), sep=c(-7,-5,-4,-3))
+OTU.df$Run_Info=NULL
+OTU.df$Gene=NULL
+OTU.df$Site=factor(OTU.df$Site,levels=c("AZ","MD","WA","HC","NB","SP"),labels=c("Arizona","Maryland","Washington","Higgins Creek","N Br Chicago R","Springbrook Creek"))
+OTU.df$Substrate=factor(OTU.df$Substrate,levels=c("P","F","T"),labels=c("PVC","Foam","Tile"))
+
+#2-Way ANOVA on OTU Richness
+
+OTU.aov<-aov(value~Site*Substrate, data=OTU.df)
+summary(OTU.aov)
 
 ```
 
