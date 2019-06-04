@@ -5,10 +5,12 @@ date: "6/3/2019"
 output: html_document
 ---
 
-## iPak Function --> install and load multiple R packages needed for analysis
+## iPak Function
 
 ```{r Library, include=FALSE}
 #knitr::opts_chunk$set(echo = TRUE)
+
+#install and load multiple R packages needed for analysis
 
 ipak <- function(pkg){
     new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
@@ -55,14 +57,14 @@ ipak(packages)
 
 ```{r Load data, include=FALSE,echo=FALSE,warning=FALSE}
 
-Algae.df<-read.delim("Vincent23S.final.subsample.tax.summary")
+Algae.df<-read.delim("Vincent23S.final.subsample.tax.UNDERSCORES_REMOVED.summary")
 Algae.df<-Algae.df[,1:62]
 
 pd=position_dodge(width = 0.4)
 
 ```
 
-##Removing Chloroplasts --> forgot to do this in Mothur
+##Remove Chloroplasts --> forgot to do this in Mothur
 
 ```{r Remove Chloroplasts}
 
@@ -70,11 +72,9 @@ Algae.df=Algae.df[Algae.df$taxon !="Chloroplast_ge",]
 
 ```
 
-##Calculating Shannon Diversity
+##Shannon Diversity
 
-#you'll have to update your first and last sample column name in the "vars" argument below.  You will also need to look at your sample (column) names and adjust the arguments in the separate function.  Briefly, change the arguments int he "into" list to represent the number o chunks you can split your sample name into.  Secondly,the "sep"  says how many places fromt he left or right(-) the cuts should be made to separate.  The number of values in sep should each the number of groups in into less 1.
-
-```{r Shannon Diversity, echo=FALSE, warning=FALSE}
+```{r Calculate Shannon Diversity, echo=FALSE, warning=FALSE}
 
 #Interested in effects of site and substrate on sequenced communities
 #Select only 1 taxa level using the "taxlevel" column in the dataset, then perform analysis
@@ -83,11 +83,54 @@ Algae.df$taxlevel=as.factor(Algae.df$taxlevel)
 Algae.df.6=subset.data.frame(Algae.df, taxlevel==6, drop=TRUE)
 
 Algae.Shannon.df<-Algae.df.6 %>% 
-  subset(select=c(-taxlevel,-rankID,-taxon,-daughterlevels,-total)) %>%
-  mutate_at(vars(Anna2_001_AZ_PA_23S:Anna2_061_SP_TC_23S),funs(diversity(.,index="shannon"))) %>%
+  subset(select=c(-taxlevel,-rankID,-taxon,-daughterlevels,-total,-Anna2020SCB23S,-Anna2031SCD23S,-Anna2041SCE23S)) %>%
+  mutate_at(vars(Anna2001AZPA23S:Anna2061SPTC23S),funs(diversity(.,index="shannon"))) %>%
   gather(key="Sample",value="Diversity") %>%
   distinct(Sample,Diversity) %>% 
-  separate(Sample, into=c("junk","Date","Substrate","Rep"), sep=c(1,7,-1))
+  separate(Sample, into=c("Run_Info","Site","Substrate","Rep","Gene"), sep=c(-7,-5,-4,-3))
+
+Algae.Shannon.df$Run_Info=NULL
+Algae.Shannon.df$Gene=NULL
+Algae.Shannon.df$Site=factor(Algae.Shannon.df$Site,levels=c("AZ","MD","WA","HC","NB","SP"),labels=c("Arizona","Maryland","Washington","Higgins Creek","N Br Chicago R","Springbrook Creek"))
+Algae.Shannon.df$Substrate=factor(Algae.Shannon.df$Substrate,levels=c("P","F","T"),labels=c("PVC","Foam","Tile"))
+
+#Summarize Shannon Diversity by Site and Substrate
+# Get means across reps
+
+Algae.Shannon.Diversity.Summary<-Algae.Shannon.df %>% 
+  group_by(Site, Substrate) %>% 
+  summarise(mean=mean(Diversity),se=(sd(Diversity)/sqrt(n())))
+
+```
+
+```{r Figure: Shannon Diversity}
+
+Algae.Shannon.Diversity=ggplot(Algae.Shannon.Diversity.Summary, aes(x=Site,y=mean,fill=Substrate))+
+  geom_bar(stat="identity", color="black", position=position_dodge())+
+  ylab("Shannon Diversity (H')")+
+  xlab("Site")+
+  theme_classic()+
+  theme(legend.position=c(.9,.85),
+        legend.direction = "vertical",
+        legend.title=element_blank(),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=12),
+        plot.background = element_rect(fill = "white"),
+        panel.background = element_rect(fill = "white"),
+        panel.grid.major = element_line(colour = "white", size=0.1),
+        panel.grid.minor = element_line(colour = "white"),
+        strip.background = element_blank(),
+        strip.placement = "outside")+
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(colour = "black"),
+        axis.text.y = element_text(colour = "black"))+
+  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width = 0.2, position
+  =position_dodge(0.9))
+
+Algae.Shannon.Diversity
+
+ggsave("Algae.Shannon.Diversity.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
 
 ```
 
