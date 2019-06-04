@@ -85,7 +85,7 @@ list_to_df <- function(list_for_df) {
   df$value <- unname(list_for_df)
   df
 }
-SD_otu.df=list_to_df(otu) #conevrt list to data frame wiht custom function above
+SD_otu.df=list_to_df(SD_otu) #conevrt list to data frame wiht custom function above
 SD_otu.df$value=as.numeric(SD_otu.df$value)
 SD_otu.df=separate(SD_otu.df,name,into=c("junk","Date","Substrate"),sep=c(1,7))
 SD_otu.df=separate(SD_otu.df,Substrate,into=c("Substrate","Rep"),sep=c(-1))
@@ -93,10 +93,10 @@ SD_otu.df$junk=NULL
 SD_otu.df=droplevels(SD_otu.df[-which(SD_otu.df$Substrate=='CR'),])
 SD_otu.df$Date=as.factor(SD_otu.df$Date)
 SD_otu.df$Date=revalue(SD_otu.df$Date,c("170818"="3","170828"="10","170905"="21","170915"="31"))
-SD_out.aov=SD_otu.df%>% #tidy pipes!  Run anovs by Date on otu richenss
+SD_otu.aov=SD_otu.df%>% #tidy pipes!  Run anovs by Date on otu richenss
   group_by(Date)%>%
   do(tidy(aov(value~Substrate,data=.)))
-SD_out.aov
+SD_otu.aov
 SD_tukey.out=SD_otu.df%>%
   group_by(Date)%>%
   do(multitst=TukeyHSD(aov(value~Substrate,data=.)))
@@ -116,4 +116,28 @@ SD_otu.plot=ggplot(SD_otu.df.summary, aes(x=Date,y=value,group=Substrate,shape=S
         legend.text=element_text(size=14))+
   scale_shape_manual(name="Substrate",values=c(21,22,23,24,25,26))
 SD_otu.plot
+
+#Relative Abundance
+theme_set(theme_classic(base_size = 18))
+SD_algae.df.3=subset.data.frame(SD_algae.df, taxlevel==3,drop=TRUE) #taxlevel 3 is class
+sites=list(colnames(SD_algae.df.3[,6:67])) #get list of samples
+total=list(colnames(SD_algae.df.3[,1]))
+#custome relative abudnace function/  it takes a list of sites and the total column for each taxa and finds the relaive abundance of each taxa in each sample
+rabund=function(sites){
+  rabund=sites/SD_algae.df.3$total
+  return(rabund)
+}
+SD_rabund.df=rabund(SD_algae.df.3[,6:67])
+SD_rabund.df=cbind(SD_algae.df.3$taxon,SD_rabund.df)
+#dcast and melt are the modern equivalents of transposition.  they work really well until they don't.
+SD_rabund.df=dcast(melt(SD_rabund.df,id.vars="SD_algae.df.3$taxon"),variable~SD_algae.df.3$taxon)
+SD_rabund.df=separate(SD_rabund.df,variable,into=c("junk","Date","Substrate"),sep=c(1,7))
+SD_rabund.df=separate(SD_rabund.df,Substrate,into=c("Substrate","Rep"),sep=c(-1))
+SD_rabund.df$junk=NULL
+SD_rabund.df=droplevels(SD_rabund.df[-which(SD_rabund.df$Substrate=='CR'),])
+SD_rabund.df$Date=as.factor(SD_rabund.df$Date)
+SD_rabund.df$Date=revalue(SD_rabund.df$Date,c("170818"="3","170828"="10","170905"="21","170915"="31"))
+SD_rabund.h=aggregate(SD_rabund.df[,4:17],list(SD_rabund.df$Date,SD_rabund.df$Substrate),mean)
+taxa=list(colnames(SD_rabund.h[,4:16])) 
+SD_rabund.h=melt(SD_rabund.h,id.vars=c("Group.1","Group.2"))
 
