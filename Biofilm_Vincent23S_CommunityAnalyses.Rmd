@@ -255,11 +255,72 @@ Algae.rabund.df$Gene=NULL
 Algae.rabund.df$Site=factor(Algae.rabund.df$Site,levels=c("AZ","MD","WA","HC","NB","SP"),labels=c("Arizona","Maryland","Washington","Higgins Creek","N Br Chicago R","Springbrook Creek"))
 Algae.rabund.df$Substrate=factor(Algae.rabund.df$Substrate,levels=c("P","F","T"),labels=c("PVC","Foam","Tile"))
 
-t(Algae.rabund.df)
+Algae.rabund.h=aggregate(Algae.rabund.df[,4:33],list(Algae.rabund.df$Site,Algae.rabund.df$Substrate),mean)
+Algae.taxa=list(colnames(Algae.rabund.h[,3:32])) 
+Algae.rabund.h=melt(Algae.rabund.h,id.vars=c("Group.1","Group.2"))#Metls columns together, makes one long list
 
-Algae.rabund.h=aggregate(rabund.df[,4:17],list(rabund.df$Date,rabund.df$Substrate),mean)
-taxa=list(colnames(rabund.h[,4:16])) 
-rabund.h=melt(rabund.h,id.vars=c("Group.1","Group.2"))
+colnames(Algae.rabund.h)[colnames(Algae.rabund.h)=="Group.1"] <- "Site"
+colnames(Algae.rabund.h)[colnames(Algae.rabund.h)=="Group.2"] <- "Substrate"
+
+#Arizona Subset
+Algae.rabund.AZ=filter(Algae.rabund.df, Site=="Arizona")
+Algae.rabund.AZ$Site=NULL
+Algae.rabund.AZ=aggregate(Algae.rabund.AZ[,3:32],list(Algae.rabund.AZ$Substrate),mean)
+Algae.rabund.AZ=melt(Algae.rabund.AZ, id="Group.1")
+Algae.rabund.AZ$Group.1=as.factor(Algae.rabund.AZ$Group.1)
+colnames(Algae.rabund.AZ)[colnames(Algae.rabund.AZ)=="Group.1"] <- "Substrate"
+colnames(Algae.rabund.AZ)[colnames(Algae.rabund.AZ)=="variable"] <- "Taxa"
+colnames(Algae.rabund.AZ)[colnames(Algae.rabund.AZ)=="value"] <- "Relative_Abundance"
+
+#Maryland Subset
+Algae.rabund.MD=filter(Algae.rabund.df, Site=="Maryland")
+Algae.rabund.MD$Site=NULL
+Algae.rabund.MD=aggregate(Algae.rabund.MD[,3:32],list(Algae.rabund.MD$Substrate),mean)
+Algae.rabund.MD=melt(Algae.rabund.MD, id="Group.1")
+Algae.rabund.MD$Group.1=as.factor(Algae.rabund.MD$Group.1)
+colnames(Algae.rabund.MD)[colnames(Algae.rabund.MD)=="Group.1"] <- "Substrate"
+colnames(Algae.rabund.MD)[colnames(Algae.rabund.MD)=="variable"] <- "Taxa"
+colnames(Algae.rabund.MD)[colnames(Algae.rabund.MD)=="value"] <- "Relative_Abundance"
+
+#Washington Subset
+Algae.rabund.WA=filter(Algae.rabund.df, Site=="Washington")
+Algae.rabund.WA$Site=NULL
+Algae.rabund.WA=aggregate(Algae.rabund.WA[,3:32],list(Algae.rabund.WA$Substrate),mean)
+Algae.rabund.WA=melt(Algae.rabund.WA, id="Group.1")
+Algae.rabund.WA$Group.1=as.factor(Algae.rabund.WA$Group.1)
+colnames(Algae.rabund.WA)[colnames(Algae.rabund.WA)=="Group.1"] <- "Substrate"
+colnames(Algae.rabund.WA)[colnames(Algae.rabund.WA)=="variable"] <- "Taxa"
+colnames(Algae.rabund.WA)[colnames(Algae.rabund.WA)=="value"] <- "Relative_Abundance"
+
+#Higgins Subset
+Algae.rabund.HC=filter(Algae.rabund.df, Site=="Higgins Creek")
+Algae.rabund.HC$Site=NULL
+Algae.rabund.HC=aggregate(Algae.rabund.HC[,3:32],list(Algae.rabund.HC$Substrate),mean)
+Algae.rabund.HC=melt(Algae.rabund.HC, id="Group.1")
+Algae.rabund.HC$Group.1=as.factor(Algae.rabund.HC$Group.1)
+colnames(Algae.rabund.HC)[colnames(Algae.rabund.HC)=="Group.1"] <- "Substrate"
+colnames(Algae.rabund.HC)[colnames(Algae.rabund.HC)=="variable"] <- "Taxa"
+colnames(Algae.rabund.HC)[colnames(Algae.rabund.HC)=="value"] <- "Relative_Abundance"
+
+#N Branch Subset
+Algae.rabund.NB=filter(Algae.rabund.df, Site=="N Br Chicago R")
+Algae.rabund.NB$Site=NULL
+Algae.rabund.NB=aggregate(Algae.rabund.NB[,3:32],list(Algae.rabund.NB$Substrate),mean)
+Algae.rabund.NB=melt(Algae.rabund.NB, id="Group.1")
+Algae.rabund.NB$Group.1=as.factor(Algae.rabund.NB$Group.1)
+colnames(Algae.rabund.NB)[colnames(Algae.rabund.NB)=="Group.1"] <- "Substrate"
+colnames(Algae.rabund.NB)[colnames(Algae.rabund.NB)=="variable"] <- "Taxa"
+colnames(Algae.rabund.NB)[colnames(Algae.rabund.NB)=="value"] <- "Relative_Abundance"
+
+#Springbrook Subset
+Algae.rabund.SP=filter(Algae.rabund.df, Site=="Springbrook Creek")
+Algae.rabund.SP$Site=NULL
+Algae.rabund.SP=aggregate(Algae.rabund.SP[,3:32],list(Algae.rabund.SP$Substrate),mean)
+Algae.rabund.SP=melt(Algae.rabund.SP, id="Group.1")
+Algae.rabund.SP$Group.1=as.factor(Algae.rabund.SP$Group.1)
+colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="Group.1"] <- "Substrate"
+colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="variable"] <- "Taxa"
+colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="value"] <- "Relative_Abundance"
 
 ```
 

@@ -138,6 +138,27 @@ SD_rabund.df=droplevels(SD_rabund.df[-which(SD_rabund.df$Substrate=='CR'),])
 SD_rabund.df$Date=as.factor(SD_rabund.df$Date)
 SD_rabund.df$Date=revalue(SD_rabund.df$Date,c("170818"="3","170828"="10","170905"="21","170915"="31"))
 SD_rabund.h=aggregate(SD_rabund.df[,4:17],list(SD_rabund.df$Date,SD_rabund.df$Substrate),mean)
-taxa=list(colnames(SD_rabund.h[,4:16])) 
+SD_taxa=list(colnames(SD_rabund.h[,4:16])) 
 SD_rabund.h=melt(SD_rabund.h,id.vars=c("Group.1","Group.2"))
 
+#creates relative abundance subsets according to date
+SD_rabund.1=filter(SD_rabund.df, Date==3)
+SD_rabund.1$Date=NULL
+SD_rabund.1=aggregate(SD_rabund.1[,3:31],list(SD_rabund.1$Substrate),mean)
+SD_rabund.1=melt(SD_rabund.1, id="Group.1")
+SD_rabund.1$Group.1=as.factor(SD_rabund.1$Group.1)
+
+SD_rabund.2=filter(SD_rabund.df,Date==10)
+SD_rabund.2$Date=NULL
+SD_rabund.2=aggregate(SD_rabund.2[,3:31],list(SD_rabund.2$Substrate),mean)
+SD_rabund.2=melt(SD_rabund.2, id="Group.1")
+
+SD_rabund.3=filter(SD_rabund.df, Date==21)
+SD_rabund.3$Date=NULL
+SD_rabund.3=aggregate(SD_rabund.3[,3:31],list(SD_rabund.3$Substrate),mean)
+SD_rabund.3=melt(SD_rabund.3, id="Group.1")
+
+SD_rabund.4=filter(SD_rabund.df, Date==31)
+SD_rabund.4$Date=NULL
+SD_rabund.4=aggregate(SD_rabund.4[,3:31],list(SD_rabund.4$Substrate),mean)
+SD_rabund.4=melt(SD_rabund.4, id="Group.1")
