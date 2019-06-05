@@ -230,7 +230,7 @@ colnames(Algae.OTU.df.summary)[colnames(Algae.OTU.df.summary)=="value"] <- "OTU_
 
 ## Relative Abundance
 
-```{r Relative Abundance Stacked, echo=FALSE, warning=FALSE}
+```{r Cumulative Relative Abundance, echo=FALSE, warning=FALSE}
 #Calculate relative abundance by taxa for each sample and plot stacked bars and a heatmap
 
 theme_set(theme_classic(base_size = 18))
@@ -261,6 +261,10 @@ Algae.rabund.h=melt(Algae.rabund.h,id.vars=c("Group.1","Group.2"))#Metls columns
 
 colnames(Algae.rabund.h)[colnames(Algae.rabund.h)=="Group.1"] <- "Site"
 colnames(Algae.rabund.h)[colnames(Algae.rabund.h)=="Group.2"] <- "Substrate"
+
+```
+
+```{r Relative Abundance by Site, echo=FALSE, warning=FALSE}
 
 #Arizona Subset
 Algae.rabund.AZ=filter(Algae.rabund.df, Site=="Arizona")
@@ -321,6 +325,29 @@ Algae.rabund.SP$Group.1=as.factor(Algae.rabund.SP$Group.1)
 colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="Group.1"] <- "Substrate"
 colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="variable"] <- "Taxa"
 colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="value"] <- "Relative_Abundance"
+
+```
+
+##Non-metric Multidimensional Scaling (NMDS)
+
+```{r NMDS Plots, echo=FALSE, warning=FALSE}
+
+Algae.df.sp=subset.data.frame(Algae.df, taxlevel==3, drop=TRUE) %>% 
+  select(-taxlevel,-rankID,-daughterlevels,-total)
+Algae.df.sp<-Algae.df.sp  %>% 
+  gather(key="Sample",value="obs",-taxon) %>% 
+  separate(Sample, into=c("Run_Info","Site","Substrate","Rep","Gene"), sep=c(-7,-5,-4,-3))
+Algae.df.sp$"Run_Info"=NULL
+Algae.df.sp$"Gene"=NULL
+add_rownames(Algae.df.sp, var = "Rownames")
+#Spread takes a tall data table and makes it wide --> each "key" value = a column populated by the "value"
+Algae.df.sps<-Algae.df.sp %>%
+  spread(key=taxon, value=obs) %>% 
+  dplyr::select(-Site,-Substrate,-Rep)
+
+Algae.ord.dist=vegdist(Algae.df.sps) #get distances
+Algae.ord.nmds=metaMDS(Algae.ord.dist) #run nmds
+Algae.ORD=data.frame(MDS1=Algae.ord.nmds$points[,1],MDS2=Algae.ord.nmds$points[,2]) #exrtact nmds coordinates
 
 ```
 

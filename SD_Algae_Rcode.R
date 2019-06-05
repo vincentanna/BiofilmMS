@@ -162,3 +162,111 @@ SD_rabund.4=filter(SD_rabund.df, Date==31)
 SD_rabund.4$Date=NULL
 SD_rabund.4=aggregate(SD_rabund.4[,3:31],list(SD_rabund.4$Substrate),mean)
 SD_rabund.4=melt(SD_rabund.4, id="Group.1")
+
+#select top 40% by substrate
+SD_rabund.1.10=SD_rabund.1%>%
+  group_by(Group.1)%>%
+  arrange(Group.1,desc(value))%>%
+  slice(seq(n()*.4)) #here is where you can select your cutoff level
+SD_rabund.1.sigma=dcast(SD_rabund.1.10,Group.1~variable)
+SD_rabund.1.sigma=t(SD_rabund.1.sigma)
+write.table(SD_rabund.1.sigma,file="170818_rabund.txt",sep="\t")
+SD_rabund.2.10=SD_rabund.2%>%
+  group_by(Group.1)%>%
+  arrange(Group.1,desc(value))%>%
+  slice(seq(n()*.4))
+SD_rabund.2.sigma=dcast(SD_rabund.2.10,Group.1~variable)
+SD_rabund.2.sigma=t(SD_rabund.2.sigma)
+write.table(SD_rabund.2.sigma,file="170828_rabund.txt",sep="\t")
+SD_rabund.3.10=SD_rabund.3%>%
+  group_by(Group.1)%>%
+  arrange(Group.1,desc(value))%>%
+  slice(seq(n()*.4))
+SD_rabund.3.sigma=dcast(SD_rabund.3.10,Group.1~variable)
+SD_rabund.3.sigma=t(SD_rabund.3.sigma)
+write.table(SD_rabund.3.sigma,file="170905_rabund.txt",sep="\t")
+SD_rabund.4.10=SD_rabund.4%>%
+  group_by(Group.1)%>%
+  arrange(Group.1,desc(value))%>%
+  slice(seq(n()*.4))
+SD_rabund.4.sigma=dcast(SD_rabund.4.10,Group.1~variable)
+SD_rabund.4.sigma=t(SD_rabund.4.sigma)
+write.table(SD_rabund.4.sigma,file="170915_rabund.txt",sep="\t")
+
+#EnvFit
+SD_env.df <- read.csv("SD_env.df.csv") #external data for vector fitting (lab assays, field data,etc)
+SD_env.drops=c("8/15/2017",
+            "8/22/2017",
+            "8/25/2017",
+            "9/1/2017",
+            "9/8/2017",
+            "9/12/2017") 
+#beware of date format shifts in excel!!
+#I am dropping dates from the env.df because I didn't get community measurements for each date
+SD_env.df=droplevels(SD_env.df[!(SD_env.df$Date.Sampled %in% SD_env.drops),],drop=TRUE)
+colnames(SD_env.df)=c("Date_Sampled",
+                   "Substrate",
+                   "NEP",
+                   "GPP",
+                   "Respiration",
+                   "BG-ase",
+                   "NAG-ase",
+                   "P-ase",
+                   "Chl.a",
+                   "Biomass",
+                   "Day of Incubation",
+                   "SRP",
+                   "NO3",
+                   "NH4",
+                   "doy",
+                   "width",
+                   "xdepth",
+                   "xvelocity",
+                   "xtemp",
+                   "xspc",
+                   "Q")
+SD_env.c.drops=c("X",  #I don't necessarily want to use all the data here, so I specified some columns to ignore (summary columns, duplicates, etc)
+              "Date.Sampled",
+              "Sample",
+              "time",
+              "doy",
+              "width",
+              "xdepth",
+              "xvelocity",
+              "xtemp",
+              "xspc",
+              "Q")
+SD_env.df.fit=SD_env.df[ , !(names(SD_env.df) %in% SD_env.c.drops)] #this is the code to remove the specified columns
+
+SD_algae.df.sp=subset.data.frame(SD_algae.df, taxlevel==3,drop=TRUE) %>% 
+  select(-taxlevel,-rankID,-daughterlevels,-total)
+SD_algae.df.sp<-SD_algae.df.sp  %>% 
+  gather(key="Sample",value="obs",-taxon) %>% 
+  separate(Sample, into=c("Junk","Date","Substrate","Rep"),sep=c(1,7,-1))
+SD_algae.df.sp$Junk=NULL
+SD_algae.df.sp=droplevels(SD_algae.df.sp[-which(SD_algae.df.sp$Substrate=='CR'),])
+SD_env.df$Date_Sampled=as.factor(SD_env.df$Date_Sampled)
+SD_env.df$Date_Sampled=revalue(SD_env.df$Date_Sampled,c("8/18/2017"="3","8/29/2017"="10","9/5/2017"="21","9/15/2017"="31"))
+SD_env.df$Substrate=factor(SD_env.df$Substrate,levels=c("H","So","Sh","F","T"),
+                        labels=c("PVC","Soft PE","Sheet PE","PS","Tile"))
+SD_env.df.names=c("Date_Sampled","Substrate")
+SD_env.df.fac=SD_env.df[,names(SD_env.df) %in% SD_env.df.names]
+SD_algae.df.sps<-SD_algae.df.sp %>% 
+  spread(key=taxon, value=obs) %>% 
+  dplyr::select(-Date,-Substrate,-Rep)
+#spread take a tall data table and makes it wide.  each "key" value becomes a column populated by the "value"
+
+SD_alg.ord.dist=vegdist(SD_algae.df.sps) #get distances
+SD_alg.ord.nmds=metaMDS(SD_alg.ord.dist) #run nmds
+SD_alg.ORD=data.frame(MDS1=SD_alg.ord.nmds$points[,1],MDS2=SD_alg.ord.nmds$points[,2]) #exrtact nmds coordinates
+
+#BREAK IS HERE
+#SD_alg.ORD=cbind(SD_alg.ORD,SD_env.df.fac) #combine nmds coordinates with env data
+#SD_alg.fit=envfit(SD_alg.ord.nmds,SD_env.df.fit,perm=999,na.rm=T,display="sites") #correlate you nmds coordintes with env data  Higher perm number means mroe sensitive p value
+#SD_alg.fit.df=as.data.frame(SD_alg.fit$vectors$arrows*sqrt(SD_alg.fit$vectors$r))
+#SD_alg.fit.df$species=rownames(SD_alg.fit.df)
+#SD_alg.spp.scrs=as.data.frame(scores(SD_alg.fit,display="vectors"))
+#SD_alg.spp.scrs=cbind(SD_alg.spp.scrs, Assay=rownames(SD_alg.spp.scrs),SD_alg.fit$vectors$pvals)
+#SD_alg.spp.scrs=setnames(SD_alg.spp.scrs, old=("SD_alg.fit$vectors$pvals"), new=c("pvals"))
+#SD_alg.spp.scrs=SD_alg.spp.scrs[ which (SD_alg.spp.scrs$pvals<0.05),] #select only significant covariates
+
