@@ -19,7 +19,7 @@ ipak <- function(pkg){
     sapply(pkg, require, character.only = TRUE)
 }
 
-# Package list.  Contains all needed packages as a this writing.  To update, simply add new package name to the list!
+# Package list.  Contains all needed packages as a this writing. To update, simply add new package name to the list!
 
 packages <- c("ggplot2", 
               "plyr", 
@@ -330,24 +330,50 @@ colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="value"] <- "Relative_Abund
 
 ##Non-metric Multidimensional Scaling (NMDS)
 
-```{r NMDS Plots, echo=FALSE, warning=FALSE}
+```{r NMDS, echo=FALSE, warning=FALSE}
 
 Algae.df.sp=subset.data.frame(Algae.df, taxlevel==3, drop=TRUE) %>% 
   select(-taxlevel,-rankID,-daughterlevels,-total)
 Algae.df.sp<-Algae.df.sp  %>% 
   gather(key="Sample",value="obs",-taxon) %>% 
   separate(Sample, into=c("Run_Info","Site","Substrate","Rep","Gene"), sep=c(-7,-5,-4,-3))
-Algae.df.sp$"Run_Info"=NULL
 Algae.df.sp$"Gene"=NULL
-add_rownames(Algae.df.sp, var = "Rownames")
+Algae.df.sp$"Run_Info"=NULL
+
 #Spread takes a tall data table and makes it wide --> each "key" value = a column populated by the "value"
 Algae.df.sps<-Algae.df.sp %>%
-  spread(key=taxon, value=obs) %>% 
-  dplyr::select(-Site,-Substrate,-Rep)
+  spread(key=taxon, value=obs)
+#Combining Site, Substrate, and Rep - turn into row names
+     Algae.df.sps$Sample <- paste(Algae.df.sps$"Site",Algae.df.sps$"Substrate",Algae.df.sps$"Rep", sep = "")
+     Algae.df.sps<-data.frame(Algae.df.sps, row.names = 34)
+     Algae.df.sps$"Site"=NULL
+     Algae.df.sps$"Substrate"=NULL
+     Algae.df.sps$"Rep"=NULL
 
 Algae.ord.dist=vegdist(Algae.df.sps) #get distances
-Algae.ord.nmds=metaMDS(Algae.ord.dist) #run nmds
-Algae.ORD=data.frame(MDS1=Algae.ord.nmds$points[,1],MDS2=Algae.ord.nmds$points[,2]) #exrtact nmds coordinates
+Algae.ord.nmds=metaMDS(Algae.ord.dist) #run NMDS
+Algae.ORD=data.frame(MDS1=Algae.ord.nmds$points[,1],MDS2=Algae.ord.nmds$points[,2]) #exrtact NMDS coordinates
+Algae.ORD.csv <- Algae.ORD %>% 
+  rownames_to_column("Sample_Info")
+Algae.ORD.csv=separate(Algae.ORD.csv,"Sample_Info",into=c("Site","Substrate","Rep"), sep=c(2,-1))
+Algae.ORD.csv$Site=factor(Algae.ORD.csv$Site,levels=c("AZ","MD","WA","HC","NB","SP"),labels=c("Arizona","Maryland","Washington","Higgins Creek","N Br Chicago R","Springbrook Creek"))
+Algae.ORD.csv$Substrate=factor(Algae.ORD.csv$Substrate,levels=c("P","F","T"),labels=c("PVC","Foam","Tile"))
+write.csv(Algae.ORD.csv, file="Algae.ORD.csv")
+
+```
+
+```{r NMDS Plot, echo=FALSE, warning=FALSE}
+
+Algae.NMDS=ggplot(Algae.ORD.csv)+
+  geom_point(mapping= aes(MDS1,MDS2,shape=Site,color=Substrate,fill=Substrate))+
+  coord_fixed(ratio=1)+
+  ggtitle("Algal Communitites")+
+  theme_classic()+
+  labs(shape="Site",substrate="Substrate")
+
+Algae.NMDS
+
+ggsave("Algae.NMDS.jpeg", device = "jpeg", width = 11, height = 8.5, units = "in")
 
 ```
 
