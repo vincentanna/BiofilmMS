@@ -261,6 +261,7 @@ Algae.rabund.h=melt(Algae.rabund.h,id.vars=c("Group.1","Group.2"))#Metls columns
 
 colnames(Algae.rabund.h)[colnames(Algae.rabund.h)=="Group.1"] <- "Site"
 colnames(Algae.rabund.h)[colnames(Algae.rabund.h)=="Group.2"] <- "Substrate"
+colnames(Algae.rabund.h)[colnames(Algae.rabund.h)=="variable"] <- "Taxa"
 
 write.csv(Algae.rabund.h, "Algae.rabund.h.csv")
 
