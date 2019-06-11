@@ -1,0 +1,541 @@
+"","Site","Substrate","Taxa","value"
+"1","Arizona","PVC","Acidimicrobiia",0
+"2","Maryland","PVC","Acidimicrobiia",0.0103172307395622
+"3","Washington","PVC","Acidimicrobiia",0.0170668209430142
+"4","Higgins Creek","PVC","Acidimicrobiia",0
+"5","N Br Chicago R","PVC","Acidimicrobiia",0.146948221000868
+"6","Springbrook Creek","PVC","Acidimicrobiia",0.00308552695014946
+"7","Arizona","Foam","Acidimicrobiia",0
+"8","Maryland","Foam","Acidimicrobiia",0.029408928743612
+"9","Washington","Foam","Acidimicrobiia",0.00356764053611031
+"10","Higgins Creek","Foam","Acidimicrobiia",0
+"11","N Br Chicago R","Foam","Acidimicrobiia",0.0914087358981776
+"12","Springbrook Creek","Foam","Acidimicrobiia",0.0026034133641886
+"13","Arizona","Tile","Acidimicrobiia",0.000192845434384341
+"14","Maryland","Tile","Acidimicrobiia",0.00617105390029891
+"15","Washington","Tile","Acidimicrobiia",0.00192845434384341
+"16","Higgins Creek","Tile","Acidimicrobiia",0
+"17","N Br Chicago R","Tile","Acidimicrobiia",0.0202487706103558
+"18","Springbrook Creek","Tile","Acidimicrobiia",0.000385690868768682
+"19","Arizona","PVC","Actinobacteria_unclassified",0
+"20","Maryland","PVC","Actinobacteria_unclassified",0
+"21","Washington","PVC","Actinobacteria_unclassified",0
+"22","Higgins Creek","PVC","Actinobacteria_unclassified",0
+"23","N Br Chicago R","PVC","Actinobacteria_unclassified",0.111111111111111
+"24","Springbrook Creek","PVC","Actinobacteria_unclassified",0
+"25","Arizona","Foam","Actinobacteria_unclassified",0
+"26","Maryland","Foam","Actinobacteria_unclassified",0
+"27","Washington","Foam","Actinobacteria_unclassified",0
+"28","Higgins Creek","Foam","Actinobacteria_unclassified",0
+"29","N Br Chicago R","Foam","Actinobacteria_unclassified",0.222222222222222
+"30","Springbrook Creek","Foam","Actinobacteria_unclassified",0
+"31","Arizona","Tile","Actinobacteria_unclassified",0
+"32","Maryland","Tile","Actinobacteria_unclassified",0
+"33","Washington","Tile","Actinobacteria_unclassified",0
+"34","Higgins Creek","Tile","Actinobacteria_unclassified",0
+"35","N Br Chicago R","Tile","Actinobacteria_unclassified",0
+"36","Springbrook Creek","Tile","Actinobacteria_unclassified",0
+"37","Arizona","PVC","Alphaproteobacteria",0.0293747767703053
+"38","Maryland","PVC","Alphaproteobacteria",0.00347863147816326
+"39","Washington","PVC","Alphaproteobacteria",0.00723939527638462
+"40","Higgins Creek","PVC","Alphaproteobacteria",0.00393484544251254
+"41","N Br Chicago R","PVC","Alphaproteobacteria",0.0329404490706141
+"42","Springbrook Creek","PVC","Alphaproteobacteria",0.0281832179292088
+"43","Arizona","Foam","Alphaproteobacteria",0.0427790633807256
+"44","Maryland","Foam","Alphaproteobacteria",0.00926834685467484
+"45","Washington","Foam","Alphaproteobacteria",0.00242813879709584
+"46","Higgins Creek","Foam","Alphaproteobacteria",0.0021159924004358
+"47","N Br Chicago R","Foam","Alphaproteobacteria",0.0429201295407546
+"48","Springbrook Creek","Foam","Alphaproteobacteria",0.0157183719164288
+"49","Arizona","Tile","Alphaproteobacteria",0.0401018077478337
+"50","Maryland","Tile","Alphaproteobacteria",0.00507538035338574
+"51","Washington","Tile","Alphaproteobacteria",0.00130561233218379
+"52","Higgins Creek","Tile","Alphaproteobacteria",0.00537251971174481
+"53","N Br Chicago R","Tile","Alphaproteobacteria",0.05001545724945
+"54","Springbrook Creek","Tile","Alphaproteobacteria",0.01106318863547
+"55","Arizona","PVC","Anaerolineae",0.0357142857142857
+"56","Maryland","PVC","Anaerolineae",0.0238095238095238
+"57","Washington","PVC","Anaerolineae",0
+"58","Higgins Creek","PVC","Anaerolineae",0
+"59","N Br Chicago R","PVC","Anaerolineae",0
+"60","Springbrook Creek","PVC","Anaerolineae",0
+"61","Arizona","Foam","Anaerolineae",0.0833333333333333
+"62","Maryland","Foam","Anaerolineae",0
+"63","Washington","Foam","Anaerolineae",0
+"64","Higgins Creek","Foam","Anaerolineae",0
+"65","N Br Chicago R","Foam","Anaerolineae",0
+"66","Springbrook Creek","Foam","Anaerolineae",0
+"67","Arizona","Tile","Anaerolineae",0.166666666666667
+"68","Maryland","Tile","Anaerolineae",0
+"69","Washington","Tile","Anaerolineae",0
+"70","Higgins Creek","Tile","Anaerolineae",0.0238095238095238
+"71","N Br Chicago R","Tile","Anaerolineae",0
+"72","Springbrook Creek","Tile","Anaerolineae",0
+"73","Arizona","PVC","Bacilli",0.0666666666666667
+"74","Maryland","PVC","Bacilli",0
+"75","Washington","PVC","Bacilli",0
+"76","Higgins Creek","PVC","Bacilli",0
+"77","N Br Chicago R","PVC","Bacilli",0
+"78","Springbrook Creek","PVC","Bacilli",0
+"79","Arizona","Foam","Bacilli",0.266666666666667
+"80","Maryland","Foam","Bacilli",0
+"81","Washington","Foam","Bacilli",0
+"82","Higgins Creek","Foam","Bacilli",0
+"83","N Br Chicago R","Foam","Bacilli",0
+"84","Springbrook Creek","Foam","Bacilli",0
+"85","Arizona","Tile","Bacilli",0
+"86","Maryland","Tile","Bacilli",0
+"87","Washington","Tile","Bacilli",0
+"88","Higgins Creek","Tile","Bacilli",0
+"89","N Br Chicago R","Tile","Bacilli",0
+"90","Springbrook Creek","Tile","Bacilli",0
+"91","Arizona","PVC","Bacteria_unclassified",0.00577165462418729
+"92","Maryland","PVC","Bacteria_unclassified",0.00274543571312693
+"93","Washington","PVC","Bacteria_unclassified",0.0763418317047908
+"94","Higgins Creek","PVC","Bacteria_unclassified",0.00611483408832815
+"95","N Br Chicago R","PVC","Bacteria_unclassified",0.0237293000386857
+"96","Springbrook Creek","PVC","Bacteria_unclassified",0.0342368312680169
+"97","Arizona","Foam","Bacteria_unclassified",0.00774337663634208
+"98","Maryland","Foam","Bacteria_unclassified",0.00647049280571051
+"99","Washington","Foam","Bacteria_unclassified",0.0467348033893652
+"100","Higgins Creek","Foam","Bacteria_unclassified",0.00548463179963311
+"101","N Br Chicago R","Foam","Bacteria_unclassified",0.0264747357518126
+"102","Springbrook Creek","Foam","Bacteria_unclassified",0.0129035478516966
+"103","Arizona","Tile","Bacteria_unclassified",0.00605243782212072
+"104","Maryland","Tile","Bacteria_unclassified",0.00378745335879101
+"105","Washington","Tile","Bacteria_unclassified",0.0202413487576903
+"106","Higgins Creek","Tile","Bacteria_unclassified",0.00662024384460834
+"107","N Br Chicago R","Tile","Bacteria_unclassified",0.0306490459610897
+"108","Springbrook Creek","Tile","Bacteria_unclassified",0.0100083610996718
+"109","Arizona","PVC","Bacteroidetes_unclassified",0
+"110","Maryland","PVC","Bacteroidetes_unclassified",0
+"111","Washington","PVC","Bacteroidetes_unclassified",0
+"112","Higgins Creek","PVC","Bacteroidetes_unclassified",0.111111111111111
+"113","N Br Chicago R","PVC","Bacteroidetes_unclassified",0.0555555555555556
+"114","Springbrook Creek","PVC","Bacteroidetes_unclassified",0
+"115","Arizona","Foam","Bacteroidetes_unclassified",0
+"116","Maryland","Foam","Bacteroidetes_unclassified",0
+"117","Washington","Foam","Bacteroidetes_unclassified",0
+"118","Higgins Creek","Foam","Bacteroidetes_unclassified",0.0555555555555556
+"119","N Br Chicago R","Foam","Bacteroidetes_unclassified",0
+"120","Springbrook Creek","Foam","Bacteroidetes_unclassified",0
+"121","Arizona","Tile","Bacteroidetes_unclassified",0
+"122","Maryland","Tile","Bacteroidetes_unclassified",0
+"123","Washington","Tile","Bacteroidetes_unclassified",0
+"124","Higgins Creek","Tile","Bacteroidetes_unclassified",0.111111111111111
+"125","N Br Chicago R","Tile","Bacteroidetes_unclassified",0
+"126","Springbrook Creek","Tile","Bacteroidetes_unclassified",0
+"127","Arizona","PVC","Bacteroidia",0.0329421227743044
+"128","Maryland","PVC","Bacteroidia",0.00394866732477789
+"129","Washington","PVC","Bacteroidia",0.00884793974626156
+"130","Higgins Creek","PVC","Bacteroidia",0.00676392088040657
+"131","N Br Chicago R","PVC","Bacteroidia",0.0214982998793463
+"132","Springbrook Creek","PVC","Bacteroidia",0.0147709407334284
+"133","Arizona","Foam","Bacteroidia",0.0784614822127162
+"134","Maryland","Foam","Bacteroidia",0.0131622244159263
+"135","Washington","Foam","Bacteroidia",0.00617893312858762
+"136","Higgins Creek","Foam","Bacteroidia",0.00332711783847026
+"137","N Br Chicago R","Foam","Bacteroidia",0.0251544733282147
+"138","Springbrook Creek","Foam","Bacteroidia",0.00877481627728419
+"139","Arizona","Tile","Bacteroidia",0.0577675404921209
+"140","Maryland","Tile","Bacteroidia",0.00603268619063288
+"141","Washington","Tile","Bacteroidia",0.0100179152498995
+"142","Higgins Creek","Tile","Bacteroidia",0.00566706884574604
+"143","N Br Chicago R","Tile","Bacteroidia",0.0219004789587218
+"144","Springbrook Creek","Tile","Bacteroidia",0.00811670505648788
+"145","Arizona","PVC","Chlamydiae",0
+"146","Maryland","PVC","Chlamydiae",0
+"147","Washington","PVC","Chlamydiae",0
+"148","Higgins Creek","PVC","Chlamydiae",0
+"149","N Br Chicago R","PVC","Chlamydiae",0.111111111111111
+"150","Springbrook Creek","PVC","Chlamydiae",0
+"151","Arizona","Foam","Chlamydiae",0.111111111111111
+"152","Maryland","Foam","Chlamydiae",0
+"153","Washington","Foam","Chlamydiae",0
+"154","Higgins Creek","Foam","Chlamydiae",0
+"155","N Br Chicago R","Foam","Chlamydiae",0
+"156","Springbrook Creek","Foam","Chlamydiae",0
+"157","Arizona","Tile","Chlamydiae",0
+"158","Maryland","Tile","Chlamydiae",0.111111111111111
+"159","Washington","Tile","Chlamydiae",0
+"160","Higgins Creek","Tile","Chlamydiae",0
+"161","N Br Chicago R","Tile","Chlamydiae",0
+"162","Springbrook Creek","Tile","Chlamydiae",0
+"163","Arizona","PVC","Chloroflexi_unclassified",0.0144927536231884
+"164","Maryland","PVC","Chloroflexi_unclassified",0.0434782608695652
+"165","Washington","PVC","Chloroflexi_unclassified",0
+"166","Higgins Creek","PVC","Chloroflexi_unclassified",0
+"167","N Br Chicago R","PVC","Chloroflexi_unclassified",0
+"168","Springbrook Creek","PVC","Chloroflexi_unclassified",0
+"169","Arizona","Foam","Chloroflexi_unclassified",0.0579710144927536
+"170","Maryland","Foam","Chloroflexi_unclassified",0.0144927536231884
+"171","Washington","Foam","Chloroflexi_unclassified",0
+"172","Higgins Creek","Foam","Chloroflexi_unclassified",0
+"173","N Br Chicago R","Foam","Chloroflexi_unclassified",0
+"174","Springbrook Creek","Foam","Chloroflexi_unclassified",0
+"175","Arizona","Tile","Chloroflexi_unclassified",0.173913043478261
+"176","Maryland","Tile","Chloroflexi_unclassified",0.0144927536231884
+"177","Washington","Tile","Chloroflexi_unclassified",0
+"178","Higgins Creek","Tile","Chloroflexi_unclassified",0
+"179","N Br Chicago R","Tile","Chloroflexi_unclassified",0.0144927536231884
+"180","Springbrook Creek","Tile","Chloroflexi_unclassified",0
+"181","Arizona","PVC","Cyanobacteria_unclassified",0.00378787878787879
+"182","Maryland","PVC","Cyanobacteria_unclassified",0.0248316498316498
+"183","Washington","PVC","Cyanobacteria_unclassified",0.0138888888888889
+"184","Higgins Creek","PVC","Cyanobacteria_unclassified",0.0227272727272727
+"185","N Br Chicago R","PVC","Cyanobacteria_unclassified",0.0214646464646465
+"186","Springbrook Creek","PVC","Cyanobacteria_unclassified",0.0143097643097643
+"187","Arizona","Foam","Cyanobacteria_unclassified",0.00420875420875421
+"188","Maryland","Foam","Cyanobacteria_unclassified",0.0256734006734007
+"189","Washington","Foam","Cyanobacteria_unclassified",0.0206228956228956
+"190","Higgins Creek","Foam","Cyanobacteria_unclassified",0.0256734006734007
+"191","N Br Chicago R","Foam","Cyanobacteria_unclassified",0.0180976430976431
+"192","Springbrook Creek","Foam","Cyanobacteria_unclassified",0.0164141414141414
+"193","Arizona","Tile","Cyanobacteria_unclassified",0.00378787878787879
+"194","Maryland","Tile","Cyanobacteria_unclassified",0.0164141414141414
+"195","Washington","Tile","Cyanobacteria_unclassified",0.029040404040404
+"196","Higgins Creek","Tile","Cyanobacteria_unclassified",0.0197811447811448
+"197","N Br Chicago R","Tile","Cyanobacteria_unclassified",0.0113636363636364
+"198","Springbrook Creek","Tile","Cyanobacteria_unclassified",0.0155723905723906
+"199","Arizona","PVC","Deltaproteobacteria",0.0102843315184513
+"200","Maryland","PVC","Deltaproteobacteria",0.0205686630369026
+"201","Washington","PVC","Deltaproteobacteria",0.00423472474289171
+"202","Higgins Creek","PVC","Deltaproteobacteria",0.0193587416817907
+"203","N Br Chicago R","PVC","Deltaproteobacteria",0.0217785843920145
+"204","Springbrook Creek","PVC","Deltaproteobacteria",0.0338777979431337
+"205","Arizona","Foam","Deltaproteobacteria",0.0254083484573503
+"206","Maryland","Foam","Deltaproteobacteria",0.0187537810042347
+"207","Washington","Foam","Deltaproteobacteria",0.00181488203266788
+"208","Higgins Creek","Foam","Deltaproteobacteria",0.0120992135511192
+"209","N Br Chicago R","Foam","Deltaproteobacteria",0.0302480338777979
+"210","Springbrook Creek","Foam","Deltaproteobacteria",0.00665456745311555
+"211","Arizona","Tile","Deltaproteobacteria",0.0254083484573503
+"212","Maryland","Tile","Deltaproteobacteria",0.0254083484573503
+"213","Washington","Tile","Deltaproteobacteria",0.000604960677555959
+"214","Higgins Creek","Tile","Deltaproteobacteria",0.0459770114942529
+"215","N Br Chicago R","Tile","Deltaproteobacteria",0.0260133091349062
+"216","Springbrook Creek","Tile","Deltaproteobacteria",0.00483968542044767
+"217","Arizona","PVC","Fibrobacteria",0
+"218","Maryland","PVC","Fibrobacteria",0
+"219","Washington","PVC","Fibrobacteria",0
+"220","Higgins Creek","PVC","Fibrobacteria",0
+"221","N Br Chicago R","PVC","Fibrobacteria",0
+"222","Springbrook Creek","PVC","Fibrobacteria",0
+"223","Arizona","Foam","Fibrobacteria",0
+"224","Maryland","Foam","Fibrobacteria",0
+"225","Washington","Foam","Fibrobacteria",0
+"226","Higgins Creek","Foam","Fibrobacteria",0
+"227","N Br Chicago R","Foam","Fibrobacteria",0
+"228","Springbrook Creek","Foam","Fibrobacteria",0
+"229","Arizona","Tile","Fibrobacteria",0.333333333333333
+"230","Maryland","Tile","Fibrobacteria",0
+"231","Washington","Tile","Fibrobacteria",0
+"232","Higgins Creek","Tile","Fibrobacteria",0
+"233","N Br Chicago R","Tile","Fibrobacteria",0
+"234","Springbrook Creek","Tile","Fibrobacteria",0
+"235","Arizona","PVC","Firmicutes_unclassified",0
+"236","Maryland","PVC","Firmicutes_unclassified",0.166666666666667
+"237","Washington","PVC","Firmicutes_unclassified",0
+"238","Higgins Creek","PVC","Firmicutes_unclassified",0
+"239","N Br Chicago R","PVC","Firmicutes_unclassified",0
+"240","Springbrook Creek","PVC","Firmicutes_unclassified",0
+"241","Arizona","Foam","Firmicutes_unclassified",0
+"242","Maryland","Foam","Firmicutes_unclassified",0
+"243","Washington","Foam","Firmicutes_unclassified",0
+"244","Higgins Creek","Foam","Firmicutes_unclassified",0
+"245","N Br Chicago R","Foam","Firmicutes_unclassified",0
+"246","Springbrook Creek","Foam","Firmicutes_unclassified",0
+"247","Arizona","Tile","Firmicutes_unclassified",0
+"248","Maryland","Tile","Firmicutes_unclassified",0
+"249","Washington","Tile","Firmicutes_unclassified",0
+"250","Higgins Creek","Tile","Firmicutes_unclassified",0
+"251","N Br Chicago R","Tile","Firmicutes_unclassified",0.166666666666667
+"252","Springbrook Creek","Tile","Firmicutes_unclassified",0
+"253","Arizona","PVC","Fusobacteriia",0
+"254","Maryland","PVC","Fusobacteriia",0
+"255","Washington","PVC","Fusobacteriia",0
+"256","Higgins Creek","PVC","Fusobacteriia",0
+"257","N Br Chicago R","PVC","Fusobacteriia",0
+"258","Springbrook Creek","PVC","Fusobacteriia",0
+"259","Arizona","Foam","Fusobacteriia",0
+"260","Maryland","Foam","Fusobacteriia",0
+"261","Washington","Foam","Fusobacteriia",0
+"262","Higgins Creek","Foam","Fusobacteriia",0
+"263","N Br Chicago R","Foam","Fusobacteriia",0
+"264","Springbrook Creek","Foam","Fusobacteriia",0
+"265","Arizona","Tile","Fusobacteriia",0
+"266","Maryland","Tile","Fusobacteriia",0.333333333333333
+"267","Washington","Tile","Fusobacteriia",0
+"268","Higgins Creek","Tile","Fusobacteriia",0
+"269","N Br Chicago R","Tile","Fusobacteriia",0
+"270","Springbrook Creek","Tile","Fusobacteriia",0
+"271","Arizona","PVC","Gammaproteobacteria",0.00843179933665008
+"272","Maryland","PVC","Gammaproteobacteria",0.00405783582089552
+"273","Washington","PVC","Gammaproteobacteria",0.0309183250414594
+"274","Higgins Creek","PVC","Gammaproteobacteria",0.00223362354892206
+"275","N Br Chicago R","PVC","Gammaproteobacteria",0.0226264510779436
+"276","Springbrook Creek","PVC","Gammaproteobacteria",0.0372408789386401
+"277","Arizona","Foam","Gammaproteobacteria",0.015967039800995
+"278","Maryland","Foam","Gammaproteobacteria",0.0111940298507463
+"279","Washington","Foam","Gammaproteobacteria",0.0248341625207297
+"280","Higgins Creek","Foam","Gammaproteobacteria",0.00207296849087894
+"281","N Br Chicago R","Foam","Gammaproteobacteria",0.0298196517412935
+"282","Springbrook Creek","Foam","Gammaproteobacteria",0.0204653814262023
+"283","Arizona","Tile","Gammaproteobacteria",0.0137385986733002
+"284","Maryland","Tile","Gammaproteobacteria",0.00442060530679934
+"285","Washington","Tile","Gammaproteobacteria",0.0186826285240464
+"286","Higgins Creek","Tile","Gammaproteobacteria",0.00287106135986733
+"287","N Br Chicago R","Tile","Gammaproteobacteria",0.0288194444444444
+"288","Springbrook Creek","Tile","Gammaproteobacteria",0.0155213515754561
+"289","Arizona","PVC","Gracilibacteria",0.00133466800133467
+"290","Maryland","PVC","Gracilibacteria",0.002002002002002
+"291","Washington","PVC","Gracilibacteria",0.00133466800133467
+"292","Higgins Creek","PVC","Gracilibacteria",0.00767434100767434
+"293","N Br Chicago R","PVC","Gracilibacteria",0.0453787120453787
+"294","Springbrook Creek","PVC","Gracilibacteria",0.002002002002002
+"295","Arizona","Foam","Gracilibacteria",0.002002002002002
+"296","Maryland","Foam","Gracilibacteria",0.0173506840173507
+"297","Washington","Foam","Gracilibacteria",0.000333667000333667
+"298","Higgins Creek","Foam","Gracilibacteria",0.00834167500834167
+"299","N Br Chicago R","Foam","Gracilibacteria",0.023023023023023
+"300","Springbrook Creek","Foam","Gracilibacteria",0.00266933600266934
+"301","Arizona","Tile","Gracilibacteria",0.004004004004004
+"302","Maryland","Tile","Gracilibacteria",0.000667334000667334
+"303","Washington","Tile","Gracilibacteria",0.000333667000333667
+"304","Higgins Creek","Tile","Gracilibacteria",0.00834167500834167
+"305","N Br Chicago R","Tile","Gracilibacteria",0.205205205205205
+"306","Springbrook Creek","Tile","Gracilibacteria",0.00133466800133467
+"307","Arizona","PVC","Kiritimatiellae",0.00465116279069767
+"308","Maryland","PVC","Kiritimatiellae",0.0147286821705426
+"309","Washington","PVC","Kiritimatiellae",0.000775193798449612
+"310","Higgins Creek","PVC","Kiritimatiellae",0.013953488372093
+"311","N Br Chicago R","PVC","Kiritimatiellae",0.0364341085271318
+"312","Springbrook Creek","PVC","Kiritimatiellae",0.0131782945736434
+"313","Arizona","Foam","Kiritimatiellae",0.0155038759689922
+"314","Maryland","Foam","Kiritimatiellae",0.0372093023255814
+"315","Washington","Foam","Kiritimatiellae",0.00155038759689922
+"316","Higgins Creek","Foam","Kiritimatiellae",0.0116279069767442
+"317","N Br Chicago R","Foam","Kiritimatiellae",0.0310077519379845
+"318","Springbrook Creek","Foam","Kiritimatiellae",0.0062015503875969
+"319","Arizona","Tile","Kiritimatiellae",0.00697674418604651
+"320","Maryland","Tile","Kiritimatiellae",0.0286821705426357
+"321","Washington","Tile","Kiritimatiellae",0.000775193798449612
+"322","Higgins Creek","Tile","Kiritimatiellae",0.0186046511627907
+"323","N Br Chicago R","Tile","Kiritimatiellae",0.0875968992248062
+"324","Springbrook Creek","Tile","Kiritimatiellae",0.00387596899224806
+"325","Arizona","PVC","Lentisphaerae_unclassified",0.0238095238095238
+"326","Maryland","PVC","Lentisphaerae_unclassified",0
+"327","Washington","PVC","Lentisphaerae_unclassified",0
+"328","Higgins Creek","PVC","Lentisphaerae_unclassified",0.0238095238095238
+"329","N Br Chicago R","PVC","Lentisphaerae_unclassified",0.0238095238095238
+"330","Springbrook Creek","PVC","Lentisphaerae_unclassified",0.0238095238095238
+"331","Arizona","Foam","Lentisphaerae_unclassified",0
+"332","Maryland","Foam","Lentisphaerae_unclassified",0
+"333","Washington","Foam","Lentisphaerae_unclassified",0.0238095238095238
+"334","Higgins Creek","Foam","Lentisphaerae_unclassified",0.0476190476190476
+"335","N Br Chicago R","Foam","Lentisphaerae_unclassified",0
+"336","Springbrook Creek","Foam","Lentisphaerae_unclassified",0
+"337","Arizona","Tile","Lentisphaerae_unclassified",0.0476190476190476
+"338","Maryland","Tile","Lentisphaerae_unclassified",0.0238095238095238
+"339","Washington","Tile","Lentisphaerae_unclassified",0
+"340","Higgins Creek","Tile","Lentisphaerae_unclassified",0.0714285714285714
+"341","N Br Chicago R","Tile","Lentisphaerae_unclassified",0.0238095238095238
+"342","Springbrook Creek","Tile","Lentisphaerae_unclassified",0
+"343","Arizona","PVC","Lentisphaeria",0
+"344","Maryland","PVC","Lentisphaeria",0
+"345","Washington","PVC","Lentisphaeria",0
+"346","Higgins Creek","PVC","Lentisphaeria",0.0793650793650794
+"347","N Br Chicago R","PVC","Lentisphaeria",0.0476190476190476
+"348","Springbrook Creek","PVC","Lentisphaeria",0.0158730158730159
+"349","Arizona","Foam","Lentisphaeria",0
+"350","Maryland","Foam","Lentisphaeria",0
+"351","Washington","Foam","Lentisphaeria",0
+"352","Higgins Creek","Foam","Lentisphaeria",0
+"353","N Br Chicago R","Foam","Lentisphaeria",0
+"354","Springbrook Creek","Foam","Lentisphaeria",0
+"355","Arizona","Tile","Lentisphaeria",0
+"356","Maryland","Tile","Lentisphaeria",0
+"357","Washington","Tile","Lentisphaeria",0
+"358","Higgins Creek","Tile","Lentisphaeria",0.19047619047619
+"359","N Br Chicago R","Tile","Lentisphaeria",0
+"360","Springbrook Creek","Tile","Lentisphaeria",0
+"361","Arizona","PVC","Negativicutes",0
+"362","Maryland","PVC","Negativicutes",0
+"363","Washington","PVC","Negativicutes",0
+"364","Higgins Creek","PVC","Negativicutes",0
+"365","N Br Chicago R","PVC","Negativicutes",0
+"366","Springbrook Creek","PVC","Negativicutes",0.0303030303030303
+"367","Arizona","Foam","Negativicutes",0
+"368","Maryland","Foam","Negativicutes",0
+"369","Washington","Foam","Negativicutes",0
+"370","Higgins Creek","Foam","Negativicutes",0
+"371","N Br Chicago R","Foam","Negativicutes",0
+"372","Springbrook Creek","Foam","Negativicutes",0
+"373","Arizona","Tile","Negativicutes",0.242424242424242
+"374","Maryland","Tile","Negativicutes",0
+"375","Washington","Tile","Negativicutes",0
+"376","Higgins Creek","Tile","Negativicutes",0
+"377","N Br Chicago R","Tile","Negativicutes",0.0606060606060606
+"378","Springbrook Creek","Tile","Negativicutes",0
+"379","Arizona","PVC","Oligosphaeria",0.111111111111111
+"380","Maryland","PVC","Oligosphaeria",0
+"381","Washington","PVC","Oligosphaeria",0
+"382","Higgins Creek","PVC","Oligosphaeria",0.111111111111111
+"383","N Br Chicago R","PVC","Oligosphaeria",0
+"384","Springbrook Creek","PVC","Oligosphaeria",0
+"385","Arizona","Foam","Oligosphaeria",0
+"386","Maryland","Foam","Oligosphaeria",0
+"387","Washington","Foam","Oligosphaeria",0
+"388","Higgins Creek","Foam","Oligosphaeria",0
+"389","N Br Chicago R","Foam","Oligosphaeria",0
+"390","Springbrook Creek","Foam","Oligosphaeria",0
+"391","Arizona","Tile","Oligosphaeria",0
+"392","Maryland","Tile","Oligosphaeria",0
+"393","Washington","Tile","Oligosphaeria",0
+"394","Higgins Creek","Tile","Oligosphaeria",0.111111111111111
+"395","N Br Chicago R","Tile","Oligosphaeria",0
+"396","Springbrook Creek","Tile","Oligosphaeria",0
+"397","Arizona","PVC","Oxyphotobacteria",0.0148191874517812
+"398","Maryland","PVC","Oxyphotobacteria",0.0226340942354759
+"399","Washington","PVC","Oxyphotobacteria",0.0157506097739326
+"400","Higgins Creek","PVC","Oxyphotobacteria",0.0217224247521304
+"401","N Br Chicago R","PVC","Oxyphotobacteria",0.012163190356968
+"402","Springbrook Creek","PVC","Oxyphotobacteria",0.0148925008727336
+"403","Arizona","Foam","Oxyphotobacteria",0.0115592093242516
+"404","Maryland","Foam","Oxyphotobacteria",0.0206952771342278
+"405","Washington","Foam","Oxyphotobacteria",0.0187101168342429
+"406","Higgins Creek","Foam","Oxyphotobacteria",0.0224874673935711
+"407","N Br Chicago R","Foam","Oxyphotobacteria",0.0115333786888901
+"408","Springbrook Creek","Foam","Oxyphotobacteria",0.0192020384929648
+"409","Arizona","Tile","Oxyphotobacteria",0.0132214866822182
+"410","Maryland","Tile","Oxyphotobacteria",0.0222812021729642
+"411","Washington","Tile","Oxyphotobacteria",0.0208810297914594
+"412","Higgins Creek","Tile","Oxyphotobacteria",0.0211883383798038
+"413","N Br Chicago R","Tile","Oxyphotobacteria",0.00838735924677867
+"414","Springbrook Creek","Tile","Oxyphotobacteria",0.0203993644144252
+"415","Arizona","PVC","Patescibacteria_unclassified",0.0789473684210526
+"416","Maryland","PVC","Patescibacteria_unclassified",0
+"417","Washington","PVC","Patescibacteria_unclassified",0
+"418","Higgins Creek","PVC","Patescibacteria_unclassified",0.00657894736842105
+"419","N Br Chicago R","PVC","Patescibacteria_unclassified",0.0043859649122807
+"420","Springbrook Creek","PVC","Patescibacteria_unclassified",0
+"421","Arizona","Foam","Patescibacteria_unclassified",0.0241228070175439
+"422","Maryland","Foam","Patescibacteria_unclassified",0.0087719298245614
+"423","Washington","Foam","Patescibacteria_unclassified",0
+"424","Higgins Creek","Foam","Patescibacteria_unclassified",0
+"425","N Br Chicago R","Foam","Patescibacteria_unclassified",0.0043859649122807
+"426","Springbrook Creek","Foam","Patescibacteria_unclassified",0
+"427","Arizona","Tile","Patescibacteria_unclassified",0.135964912280702
+"428","Maryland","Tile","Patescibacteria_unclassified",0
+"429","Washington","Tile","Patescibacteria_unclassified",0
+"430","Higgins Creek","Tile","Patescibacteria_unclassified",0.0219298245614035
+"431","N Br Chicago R","Tile","Patescibacteria_unclassified",0.0482456140350877
+"432","Springbrook Creek","Tile","Patescibacteria_unclassified",0
+"433","Arizona","PVC","Phycisphaerae",0
+"434","Maryland","PVC","Phycisphaerae",0
+"435","Washington","PVC","Phycisphaerae",0
+"436","Higgins Creek","PVC","Phycisphaerae",0
+"437","N Br Chicago R","PVC","Phycisphaerae",0.111111111111111
+"438","Springbrook Creek","PVC","Phycisphaerae",0
+"439","Arizona","Foam","Phycisphaerae",0
+"440","Maryland","Foam","Phycisphaerae",0
+"441","Washington","Foam","Phycisphaerae",0
+"442","Higgins Creek","Foam","Phycisphaerae",0
+"443","N Br Chicago R","Foam","Phycisphaerae",0.111111111111111
+"444","Springbrook Creek","Foam","Phycisphaerae",0
+"445","Arizona","Tile","Phycisphaerae",0
+"446","Maryland","Tile","Phycisphaerae",0
+"447","Washington","Tile","Phycisphaerae",0
+"448","Higgins Creek","Tile","Phycisphaerae",0
+"449","N Br Chicago R","Tile","Phycisphaerae",0.111111111111111
+"450","Springbrook Creek","Tile","Phycisphaerae",0
+"451","Arizona","PVC","Planctomycetacia",0.0446473326172574
+"452","Maryland","PVC","Planctomycetacia",0.0045828857858933
+"453","Washington","PVC","Planctomycetacia",0.00164697457930541
+"454","Higgins Creek","PVC","Planctomycetacia",0.00580021482277121
+"455","N Br Chicago R","PVC","Planctomycetacia",0.0542069459362692
+"456","Springbrook Creek","PVC","Planctomycetacia",0.0092015753669889
+"457","Arizona","Foam","Planctomycetacia",0.0698890082348729
+"458","Maryland","Foam","Planctomycetacia",0.00909416398138203
+"459","Washington","Foam","Planctomycetacia",0.000572860723236663
+"460","Higgins Creek","Foam","Planctomycetacia",0.00268528464017186
+"461","N Br Chicago R","Foam","Planctomycetacia",0.0485141424991049
+"462","Springbrook Creek","Foam","Planctomycetacia",0.0054421768707483
+"463","Arizona","Tile","Planctomycetacia",0.0363766559255281
+"464","Maryland","Tile","Planctomycetacia",0.0058360186179735
+"465","Washington","Tile","Planctomycetacia",0.000358037952022914
+"466","Higgins Creek","Tile","Planctomycetacia",0.00497672753311851
+"467","N Br Chicago R","Tile","Planctomycetacia",0.0253848907984246
+"468","Springbrook Creek","Tile","Planctomycetacia",0.00411743644826352
+"469","Arizona","PVC","Planctomycetes_unclassified",0
+"470","Maryland","PVC","Planctomycetes_unclassified",0.0222222222222222
+"471","Washington","PVC","Planctomycetes_unclassified",0
+"472","Higgins Creek","PVC","Planctomycetes_unclassified",0
+"473","N Br Chicago R","PVC","Planctomycetes_unclassified",0.0222222222222222
+"474","Springbrook Creek","PVC","Planctomycetes_unclassified",0
+"475","Arizona","Foam","Planctomycetes_unclassified",0.0666666666666667
+"476","Maryland","Foam","Planctomycetes_unclassified",0
+"477","Washington","Foam","Planctomycetes_unclassified",0
+"478","Higgins Creek","Foam","Planctomycetes_unclassified",0
+"479","N Br Chicago R","Foam","Planctomycetes_unclassified",0
+"480","Springbrook Creek","Foam","Planctomycetes_unclassified",0
+"481","Arizona","Tile","Planctomycetes_unclassified",0.0222222222222222
+"482","Maryland","Tile","Planctomycetes_unclassified",0.2
+"483","Washington","Tile","Planctomycetes_unclassified",0
+"484","Higgins Creek","Tile","Planctomycetes_unclassified",0
+"485","N Br Chicago R","Tile","Planctomycetes_unclassified",0
+"486","Springbrook Creek","Tile","Planctomycetes_unclassified",0
+"487","Arizona","PVC","Proteobacteria_unclassified",0.0152905198776758
+"488","Maryland","PVC","Proteobacteria_unclassified",0.00191131498470948
+"489","Washington","PVC","Proteobacteria_unclassified",0.00191131498470948
+"490","Higgins Creek","PVC","Proteobacteria_unclassified",0.00668960244648318
+"491","N Br Chicago R","PVC","Proteobacteria_unclassified",0.0728211009174312
+"492","Springbrook Creek","PVC","Proteobacteria_unclassified",0.0229357798165138
+"493","Arizona","Foam","Proteobacteria_unclassified",0.0460626911314985
+"494","Maryland","Foam","Proteobacteria_unclassified",0.00668960244648318
+"495","Washington","Foam","Proteobacteria_unclassified",0.00114678899082569
+"496","Higgins Creek","Foam","Proteobacteria_unclassified",0.0043960244648318
+"497","N Br Chicago R","Foam","Proteobacteria_unclassified",0.0724388379204893
+"498","Springbrook Creek","Foam","Proteobacteria_unclassified",0.00840978593272171
+"499","Arizona","Tile","Proteobacteria_unclassified",0.00783639143730887
+"500","Maryland","Tile","Proteobacteria_unclassified",0.00802752293577982
+"501","Washington","Tile","Proteobacteria_unclassified",0.00095565749235474
+"502","Higgins Creek","Tile","Proteobacteria_unclassified",0.00840978593272171
+"503","N Br Chicago R","Tile","Proteobacteria_unclassified",0.0376529051987768
+"504","Springbrook Creek","Tile","Proteobacteria_unclassified",0.00974770642201835
+"505","Arizona","PVC","Verrucomicrobia_unclassified",0.111111111111111
+"506","Maryland","PVC","Verrucomicrobia_unclassified",0
+"507","Washington","PVC","Verrucomicrobia_unclassified",0
+"508","Higgins Creek","PVC","Verrucomicrobia_unclassified",0
+"509","N Br Chicago R","PVC","Verrucomicrobia_unclassified",0
+"510","Springbrook Creek","PVC","Verrucomicrobia_unclassified",0
+"511","Arizona","Foam","Verrucomicrobia_unclassified",0
+"512","Maryland","Foam","Verrucomicrobia_unclassified",0
+"513","Washington","Foam","Verrucomicrobia_unclassified",0
+"514","Higgins Creek","Foam","Verrucomicrobia_unclassified",0
+"515","N Br Chicago R","Foam","Verrucomicrobia_unclassified",0
+"516","Springbrook Creek","Foam","Verrucomicrobia_unclassified",0
+"517","Arizona","Tile","Verrucomicrobia_unclassified",0.222222222222222
+"518","Maryland","Tile","Verrucomicrobia_unclassified",0
+"519","Washington","Tile","Verrucomicrobia_unclassified",0
+"520","Higgins Creek","Tile","Verrucomicrobia_unclassified",0
+"521","N Br Chicago R","Tile","Verrucomicrobia_unclassified",0
+"522","Springbrook Creek","Tile","Verrucomicrobia_unclassified",0
+"523","Arizona","PVC","Verrucomicrobiae",0.0523789527708763
+"524","Maryland","PVC","Verrucomicrobiae",0.001137278230745
+"525","Washington","PVC","Verrucomicrobiae",0.000250784430369411
+"526","Higgins Creek","PVC","Verrucomicrobiae",0.0129008176738869
+"527","N Br Chicago R","PVC","Verrucomicrobiae",0.0419218252440774
+"528","Springbrook Creek","PVC","Verrucomicrobiae",0.00258366285241045
+"529","Arizona","Foam","Verrucomicrobiae",0.0535862173542826
+"530","Maryland","Foam","Verrucomicrobiae",0.00421667774783917
+"531","Washington","Foam","Verrucomicrobiae",5.83219605510259e-05
+"532","Higgins Creek","Foam","Verrucomicrobiae",0.00667203228703736
+"533","N Br Chicago R","Foam","Verrucomicrobiae",0.0256849914266718
+"534","Springbrook Creek","Foam","Verrucomicrobiae",0.00179048418891649
+"535","Arizona","Tile","Verrucomicrobiae",0.0468850240869697
+"536","Maryland","Tile","Verrucomicrobiae",0.00155136415065729
+"537","Washington","Tile","Verrucomicrobiae",2.91609802755129e-05
+"538","Higgins Creek","Tile","Verrucomicrobiae",0.0170066836966791
+"539","N Br Chicago R","Tile","Verrucomicrobiae",0.0634659574716264
+"540","Springbrook Creek","Tile","Verrucomicrobiae",0.00120726458340624
