@@ -1,5 +1,5 @@
 ---
-title: "Biofilm_CommunityAnalyses"
+title: "Biofilm_23S_CommunityAnalyses"
 author: "Anna Vincent"
 date: "6/3/2019"
 output: html_document
@@ -66,7 +66,7 @@ pd=position_dodge(width = 0.4)
 
 ```{r Remove Chloroplasts, echo=FALSE, warning=FALSE}
 
-Algae.df=Algae.df[Algae.df$taxon !="Chloroplast_ge",]
+#Algae.df=Algae.df[Algae.df$taxon !="Chloroplast_ge",]
 
 ```
 
@@ -262,6 +262,8 @@ Algae.rabund.h=melt(Algae.rabund.h,id.vars=c("Group.1","Group.2"))#Metls columns
 colnames(Algae.rabund.h)[colnames(Algae.rabund.h)=="Group.1"] <- "Site"
 colnames(Algae.rabund.h)[colnames(Algae.rabund.h)=="Group.2"] <- "Substrate"
 
+write.csv(Algae.rabund.h, "Algae.rabund.h.csv")
+
 ```
 
 ```{r Relative Abundance by Site, echo=FALSE, warning=FALSE}
@@ -275,6 +277,7 @@ Algae.rabund.AZ$Group.1=as.factor(Algae.rabund.AZ$Group.1)
 colnames(Algae.rabund.AZ)[colnames(Algae.rabund.AZ)=="Group.1"] <- "Substrate"
 colnames(Algae.rabund.AZ)[colnames(Algae.rabund.AZ)=="variable"] <- "Taxa"
 colnames(Algae.rabund.AZ)[colnames(Algae.rabund.AZ)=="value"] <- "Relative_Abundance"
+write.csv(Algae.rabund.AZ, "Algae.rabund.AZ.csv")
 
 #Maryland Subset
 Algae.rabund.MD=filter(Algae.rabund.df, Site=="Maryland")
@@ -285,6 +288,7 @@ Algae.rabund.MD$Group.1=as.factor(Algae.rabund.MD$Group.1)
 colnames(Algae.rabund.MD)[colnames(Algae.rabund.MD)=="Group.1"] <- "Substrate"
 colnames(Algae.rabund.MD)[colnames(Algae.rabund.MD)=="variable"] <- "Taxa"
 colnames(Algae.rabund.MD)[colnames(Algae.rabund.MD)=="value"] <- "Relative_Abundance"
+write.csv(Algae.rabund.MD, "Algae.rabund.MD.csv")
 
 #Washington Subset
 Algae.rabund.WA=filter(Algae.rabund.df, Site=="Washington")
@@ -295,6 +299,7 @@ Algae.rabund.WA$Group.1=as.factor(Algae.rabund.WA$Group.1)
 colnames(Algae.rabund.WA)[colnames(Algae.rabund.WA)=="Group.1"] <- "Substrate"
 colnames(Algae.rabund.WA)[colnames(Algae.rabund.WA)=="variable"] <- "Taxa"
 colnames(Algae.rabund.WA)[colnames(Algae.rabund.WA)=="value"] <- "Relative_Abundance"
+write.csv(Algae.rabund.WA, "Algae.rabund.WA.csv")
 
 #Higgins Subset
 Algae.rabund.HC=filter(Algae.rabund.df, Site=="Higgins Creek")
@@ -305,6 +310,7 @@ Algae.rabund.HC$Group.1=as.factor(Algae.rabund.HC$Group.1)
 colnames(Algae.rabund.HC)[colnames(Algae.rabund.HC)=="Group.1"] <- "Substrate"
 colnames(Algae.rabund.HC)[colnames(Algae.rabund.HC)=="variable"] <- "Taxa"
 colnames(Algae.rabund.HC)[colnames(Algae.rabund.HC)=="value"] <- "Relative_Abundance"
+write.csv(Algae.rabund.HC, "Algae.rabund.HC.csv")
 
 #N Branch Subset
 Algae.rabund.NB=filter(Algae.rabund.df, Site=="N Br Chicago R")
@@ -315,6 +321,7 @@ Algae.rabund.NB$Group.1=as.factor(Algae.rabund.NB$Group.1)
 colnames(Algae.rabund.NB)[colnames(Algae.rabund.NB)=="Group.1"] <- "Substrate"
 colnames(Algae.rabund.NB)[colnames(Algae.rabund.NB)=="variable"] <- "Taxa"
 colnames(Algae.rabund.NB)[colnames(Algae.rabund.NB)=="value"] <- "Relative_Abundance"
+write.csv(Algae.rabund.NB, "Algae.rabund.NB.csv")
 
 #Springbrook Subset
 Algae.rabund.SP=filter(Algae.rabund.df, Site=="Springbrook Creek")
@@ -325,6 +332,7 @@ Algae.rabund.SP$Group.1=as.factor(Algae.rabund.SP$Group.1)
 colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="Group.1"] <- "Substrate"
 colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="variable"] <- "Taxa"
 colnames(Algae.rabund.SP)[colnames(Algae.rabund.SP)=="value"] <- "Relative_Abundance"
+write.csv(Algae.rabund.SP, "Algae.rabund.SP.csv")
 
 ```
 
